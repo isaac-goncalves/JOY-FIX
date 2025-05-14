@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JoyFix - Especialista em Conserto de Controles</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            html.classList.toggle('dark');
+            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300 font-['Inter']">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-blue-600 dark:text-blue-400">JoyFix</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#servicos" class="text-gray-700 dark:text-gray-300 hover:text-blue-600">Serviços</a>
+                    <a href="#sobre" class="text-gray-700 dark:text-gray-300 hover:text-blue-600">Sobre</a>
+                    <a href="#contato" class="text-gray-700 dark:text-gray-300 hover:text-blue-600">Contato</a>
+                    <button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+                        <span class="text-gray-800 dark:text-gray-200">🌓</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center">
+                <h1 class="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+                    Conserto Profissional de Controles<br>
+                    <span class="text-blue-600">em Taubaté</span>
+                </h1>
+                <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+                    Especialista em manutenção de controles de videogame e eletrônicos aviônicos com mais de 10 anos de experiência. Consertamos PlayStation, Nintendo e muito mais!
+                </p>
+                <a href="#contato" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all">
+                    Agendar Serviço
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="py-20 bg-gray-100 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center text-gray-900 dark:text-white mb-12">Nossos Serviços</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg hover:transform hover:scale-105 transition-all">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">PlayStation</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Conserto de todos os modelos: DualShock, DualSense, reparo de analogicos, botões e conexão wireless</p>
+                </div>
+                <!-- Add similar cards for other services -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold mb-8">10+ Anos de Experiência</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="p-4">
+                    <p class="text-4xl font-bold">5K+</p>
+                    <p>Controles Reparados</p>
+                </div>
+                <!-- Add similar stats -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-white text-lg font-bold mb-4">JoyFix</h3>
+                    <p>Taubaté, São Paulo<br>
+                    Rua dos Eletrônicos, 123<br>
+                    Contato: (12) 99999-9999</p>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-bold mb-4">Redes Sociais</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-blue-400">Facebook</a>
+                        <a href="#" class="hover:text-blue-400">Instagram</a>
+                        <a href="#" class="hover:text-blue-400">WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+                <p>© 2024 JoyFix - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
