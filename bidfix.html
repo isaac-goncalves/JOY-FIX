@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BidMaster - Online Auction Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Application State
+        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+        let listings = JSON.parse(localStorage.getItem('listings')) || [];
+
+        // Utility Functions
+        const generateUUID = () => crypto.randomUUID();
+        const formatCurrency = amount => `$${parseFloat(amount).toFixed(2)}`;
+
+        // Core Functions
+        const createListing = (item) => {
+            const newListing = {
+                id: generateUUID(),
+                ...item,
+                bids: [],
+                endTime: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+                created: new Date()
+            };
+            listings.push(newListing);
+            localStorage.setItem('listings', JSON.stringify(listings));
+            return newListing;
+        };
+
+        const placeBid = (listingId, amount, bidder) => {
+            const listing = listings.find(l => l.id === listingId);
+            if (amount > listing.currentBid) {
+                listing.bids.push({
+                    amount,
+                    bidder,
+                    timestamp: new Date()
+                });
+                listing.currentBid = amount;
+                localStorage.setItem('listings', JSON.stringify(listings));
+                return true;
+            }
+            return false;
+        };
+
+        // Auth Functions
+        const handleLogin = (email, password) => {
+            const user = JSON.parse(localStorage.getItem('users'))?.find(u => u.email === email && u.password === password);
+            if (user) {
+                currentUser = user;
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                return true;
+            }
+            return false;
+        };
+
+        const handleRegister = (userData) => {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            if (users.some(u => u.email === userData.email)) return false;
+            users.push(userData);
+            localStorage.setItem('users', JSON.stringify(users));
+            return handleLogin(userData.email, userData.password);
+        };
+
+        // UI Updates
+        const updateUI = () => {
+            document.getElementById('authSection').innerHTML = currentUser 
+                ? `<button onclick="currentUser=null;localStorage.removeItem('currentUser');updateUI()" 
+                   class="bg-red-600 text-white px-4 py-2 rounded-lg">Logout</button>`
+                : `<button onclick="showModal('login')" class="bg-blue-600 text-white px-4 py-2 rounded-lg mr-2">Login</button>
+                   <button onclick="showModal('register')" class="bg-green-600 text-white px-4 py-2 rounded-lg">Register</button>`;
+            
+            document.getElementById('listingsContainer').innerHTML = listings
+                .map(listing => `
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <img src="${listing.image}" alt="${listing.name}" class="w-full h-48 object-cover mb-4">
+                        <h3 class="text-xl font-bold mb-2">${listing.name}</h3>
+                        <p class="text-gray-600 mb-4">${listing.description}</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-2xl font-bold">${formatCurrency(listing.currentBid)}</p>
+                                <p class="text-sm text-gray-500">${listing.bids.length} bids</p>
+                            </div>
+                            <button onclick="showBiddingInterface('${listing.id}')" 
+                            class="bg-blue-600 text-white px-4 py-2 rounded-lg">Bid Now</button>
+                        </div>
+                    </div>
+                `).join('');
+        };
+
+        // Modal Management
+        const showModal = (type) => {
+            document.getElementById('modal').classList.remove('hidden');
+            document.getElementById('modalContent').innerHTML = type === 'login' ? `
+                <h3 class="text-2xl font-bold mb-6">Login</h3>
+                <input type="email" id="loginEmail" placeholder="Email" class="w-full p-2 mb-4 border rounded">
+                <input type="password" id="loginPassword" placeholder="Password" class="w-full p-2 mb-4 border rounded">
+                <button onclick="attemptLogin()" class="w-full bg-blue-600 text-white p-2 rounded">Login</button>
+            ` : `
+                <h3 class="text-2xl font-bold mb-6">Register</h3>
+                <input type="text" id="regName" placeholder="Full Name" class="w-full p-2 mb-4 border rounded">
+                <input type="email" id="regEmail" placeholder="Email" class="w-full p-2 mb-4 border rounded">
+                <input type="password" id="regPassword" placeholder="Password" class="w-full p-2 mb-4 border rounded">
+                <button onclick="attemptRegister()" class="w-full bg-green-600 text-white p-2 rounded">Register</button>
+            `;
+        };
+
+        // Event Handlers
+        const attemptLogin = () => {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            if (handleLogin(email, password)) {
+                document.getElementById('modal').classList.add('hidden');
+                updateUI();
+            }
+        };
+
+        const attemptRegister = () => {
+            const userData = {
+                name: document.getElementById('regName').value,
+                email: document.getElementById('regEmail').value,
+                password: document.getElementById('regPassword').value
+            };
+            if (handleRegister(userData)) {
+                document.getElementById('modal').classList.add('hidden');
+                updateUI();
+            }
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('createListingForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                const newListing = createListing({
+                    name: formData.get('itemName'),
+                    description: formData.get('description'),
+                    image: formData.get('imageUrl'),
+                    currentBid: parseFloat(formData.get('startingBid'))
+                });
+                alert(`Listing created! Share this link: ${window.location.href}?listing=${newListing.id}`);
+                e.target.reset();
+                updateUI();
+            });
+            updateUI();
+        });
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-blue-600">BidMaster</span>
+                </div>
+                <div id="authSection" class="flex items-center gap-4"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Create Listing Form -->
+        <div class="bg-white p-8 rounded-lg shadow mb-8">
+            <h2 class="text-3xl font-bold mb-6">Create New Listing</h2>
+            <form id="createListingForm" class="space-y-4">
+                <input type="text" name="itemName" placeholder="Item Name" required 
+                       class="w-full p-2 border rounded">
+                <textarea name="description" placeholder="Item Description" required 
+                          class="w-full p-2 border rounded"></textarea>
+                <input type="url" name="imageUrl" placeholder="Image URL" required 
+                       class="w-full p-2 border rounded">
+                <input type="number" name="startingBid" placeholder="Starting Bid" min="0" step="0.01" required 
+                       class="w-full p-2 border rounded">
+                <button type="submit" 
+                        class="w-full bg-green-600 text-white p-2 rounded-lg hover:bg-green-700">
+                    Create Listing
+                </button>
+            </form>
+        </div>
+
+        <!-- Active Listings -->
+        <h2 class="text-3xl font-bold mb-6">Active Listings</h2>
+        <div id="listingsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg w-96">
+            <div id="modalContent"></div>
+            <button onclick="document.getElementById('modal').classList.add('hidden')" 
+                    class="mt-4 w-full bg-gray-200 p-2 rounded">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">BidMaster</h3>
+                    <p>Secure online bidding platform</p>
+                    <p class="mt-2">© 2024 All rights reserved</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-blue-400">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-blue-400">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact</h3>
+                    <p>support@bidmaster.com</p>
+                    <p>+1 (555) 123-4567</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
