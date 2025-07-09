@@ -459,7 +459,7 @@ Comprar Agora
                     });
                 }
                 function startAuto() {
-                    intervalId = setInterval(() => slideTo(current + 1), 3500);
+                    intervalId = setInterval(() => slideTo(current + 1), 3500 + Math.floor(Math.random() * 1000));
                 }
                 function stopAuto() {
                     clearInterval(intervalId);
