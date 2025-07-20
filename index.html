@@ -54,6 +54,7 @@
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#loja" class="text-gray-700 dark:text-gray-300 hover:text-blue-600">Loja</a>
                     <a href="#servicos" class="text-gray-700 dark:text-gray-300 hover:text-blue-600">Serviços</a>
+                    <a href="#orcamento" class="text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-700 dark:hover:text-blue-300">Orçamento</a>
                     <a href="#sobre" class="text-gray-700 dark:text-gray-300 hover:text-blue-600">Sobre</a>
                     <a href="#contato" class="text-gray-700 dark:text-gray-300 hover:text-blue-600">Contato</a>
                     <a href="https://www.instagram.com/joyfix.taubate/" target="_blank"
@@ -111,6 +112,150 @@
                     </a>
                 </div>
             </div>
+    </section>
+
+    <!-- Orçamento Section -->
+    <section id="orcamento" class="py-16 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center text-gray-900 dark:text-white mb-12">Faça seu Orçamento</h2>
+            
+            <div class="calculator-container bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <form id="orcamentoForm" class="space-y-6">
+                    <!-- Controller Selection -->
+                    <div id="controllers-container" class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h5 class="text-lg font-medium text-gray-900 dark:text-white">Controles</h5>
+                            <button type="button" id="add-controller" class="text-sm bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-md transition-colors">
+                                + Adicionar Controle
+                            </button>
+                        </div>
+                        
+                        <!-- Controller Template (hidden) -->
+                        <div id="controller-template" class="hidden">
+                            <div class="controller-item flex items-center space-x-2 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                                <select class="flex-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white h-10" name="modelo[]" required>
+                                    <option value="" selected disabled>Selecione o modelo</option>
+                                    <option value="PS5">PlayStation 5</option>
+                                    <option value="PS4">PlayStation 4</option>
+                                    <option value="XboxOne">Xbox One</option>
+                                    <option value="XboxSeries">Xbox Series S/X</option>
+                                </select>
+                                <button type="button" class="remove-controller text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300" title="Remover">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Initial Controller -->
+                        <div class="controller-item flex items-center space-x-2 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                            <select class="flex-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white h-10" name="modelo[]" required>
+                                <option value="" selected disabled>Selecione o modelo</option>
+                                <option value="PS5">PlayStation 5</option>
+                                <option value="PS4">PlayStation 4</option>
+                                <option value="XboxOne">Xbox One</option>
+                                <option value="XboxSeries">Xbox Series S/X</option>
+                            </select>
+                            <button type="button" class="remove-controller text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300" title="Remover">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Peças -->
+                    <div class="space-y-4">
+                        <h5 class="text-lg font-medium text-gray-900 dark:text-white">Peças</h5>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="analogicoComum" class="h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="analogicoComum" class="ml-2 text-gray-700 dark:text-gray-300">
+                                    Analógico Comum - R$ 20,00 (cada)
+                                </label>
+                            </div>
+                            <div class="flex items-center">
+                                <button type="button" class="number-btn w-8 h-8 flex items-center justify-center bg-gray-200 dark:bg-gray-600 rounded-l-md hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors" data-target="analogicoComum" data-action="decrement">-</button>
+                                <input type="number" class="w-16 text-center border-t border-b border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white h-8 px-2" min="0" value="0" data-target="analogicoComum" inputmode="numeric" pattern="[0-9]*">
+                                <button type="button" class="number-btn w-8 h-8 flex items-center justify-center bg-gray-200 dark:bg-gray-600 rounded-r-md hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors" data-target="analogicoComum" data-action="increment">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="analogicoOriginal" class="h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="analogicoOriginal" class="ml-2 text-gray-700 dark:text-gray-300">
+                                    Analógico Original - R$ 30,00 (cada)
+                                </label>
+                            </div>
+                            <div class="flex items-center">
+                                <button type="button" class="number-btn w-8 h-8 flex items-center justify-center bg-gray-200 dark:bg-gray-600 rounded-l-md hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors" data-target="analogicoOriginal" data-action="decrement">-</button>
+                                <input type="number" class="w-16 text-center border-t border-b border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white h-8 px-2" min="0" value="0" data-target="analogicoOriginal" inputmode="numeric" pattern="[0-9]*">
+                                <button type="button" class="number-btn w-8 h-8 flex items-center justify-center bg-gray-200 dark:bg-gray-600 rounded-r-md hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors" data-target="analogicoOriginal" data-action="increment">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="analogicoMagnetico" class="h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="analogicoMagnetico" class="ml-2 text-gray-700 dark:text-gray-300">
+                                    Analógico Magnético - R$ 30,00 (cada)
+                                </label>
+                            </div>
+                            <div class="flex items-center">
+                                <button type="button" class="number-btn w-8 h-8 flex items-center justify-center bg-gray-200 dark:bg-gray-600 rounded-l-md hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors" data-target="analogicoMagnetico" data-action="decrement">-</button>
+                                <input type="number" class="w-16 text-center border-t border-b border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white h-8 px-2" min="0" value="0" data-target="analogicoMagnetico" inputmode="numeric" pattern="[0-9]*">
+                                <button type="button" class="number-btn w-8 h-8 flex items-center justify-center bg-gray-200 dark:bg-gray-600 rounded-r-md hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors" data-target="analogicoMagnetico" data-action="increment">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="membranaBotoes" class="h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="membranaBotoes" class="ml-2 text-gray-700 dark:text-gray-300">
+                                    Membrana dos Botões - R$ 25,00
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="bateria" class="h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="bateria" class="ml-2 text-gray-700 dark:text-gray-300">
+                                    Bateria - R$ 40,00
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mão de Obra -->
+                    <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
+                        <div class="flex items-center justify-between">
+                            <label class="text-gray-700 dark:text-gray-300">Mão de Obra Básica</label>
+                            <span class="font-medium text-gray-900 dark:text-white">R$ 60,00</span>
+                        </div>
+                    </div>
+
+                    <!-- Total -->
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-medium text-gray-900 dark:text-white">Total</span>
+                            <span id="total-orcamento" class="text-2xl font-bold text-blue-600 dark:text-blue-400">R$ 60,00</span>
+                        </div>
+                    </div>
+
+                    <!-- Botão WhatsApp -->
+                    <button type="button" id="enviarWhatsApp" class="w-full flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/>
+                        </svg>
+                        Enviar Orçamento por WhatsApp
+                    </button>
+                </form>
+            </div>
+        </div>
     </section>
 
     <!-- Carousel Section (commented out)
@@ -198,171 +343,8 @@
     <section id="loja" class="py-20 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-4xl font-bold text-center text-gray-900 dark:text-white mb-12">Nossa Loja</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Product 1: PS5 Black -->
-                <div
-                    class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform flex flex-col h-full">
-                    <div class="relative">
-                        <div class="product-carousel slide-carousel overflow-hidden"
-                            data-images='["images/Produtos/PS5_black/IMG_20250606_122658.jpg","images/Produtos/PS5_black/IMG_20250606_122705.jpg","images/Produtos/PS5_black/IMG_20250606_122708.jpg","images/Produtos/PS5_black/IMG_20250606_122720.jpg"]'>
-                            <div class="carousel-track flex transition-transform duration-700"
-                                style="will-change: transform;">
-                                <img src="images/Produtos/PS5_black/IMG_20250606_122658.jpg" alt="DualSense PS5 Preto"
-                                    class="w-full h-56 object-cover bg-white rounded-t-xl mx-auto block flex-shrink-0" />
-                                <img src="images/Produtos/PS5_black/IMG_20250606_122705.jpg" alt="DualSense PS5 Preto"
-                                    class="w-full h-56 object-cover bg-white rounded-t-xl mx-auto block flex-shrink-0" />
-                                <img src="images/Produtos/PS5_black/IMG_20250606_122708.jpg" alt="DualSense PS5 Preto"
-                                    class="w-full h-56 object-cover bg-white rounded-t-xl mx-auto block flex-shrink-0" />
-                                <img src="images/Produtos/PS5_black/IMG_20250606_122720.jpg" alt="DualSense PS5 Preto"
-                                    class="w-full h-56 object-cover bg-white rounded-t-xl mx-auto block flex-shrink-0" />
-                            </div>
-                            <div class="carousel-dots absolute bottom-2 left-1/2 -translate-x-1/2 flex space-x-1"></div>
-                        </div>
-                        <div
-                            class="absolute top-2 right-2 bg-black text-white text-xs font-bold px-2 py-1 rounded-full">
-                            PS5 BLACK</div>
-                    </div>
-                    <div class="p-4 flex-1">
-                        <h3 class="text-lg font-bold text-gray-900 dark:text-white">DualSense PS5 Preto</h3>
-                        <p class="text-gray-600 dark:text-gray-300 text-sm mt-1">Controle PlayStation 5 - Preto</p>
-                        <div class="mt-3">
-                            <span class="text-2xl font-bold text-gray-900 dark:text-white">R$ 270,00</span>
-                            <span class="text-green-600 text-sm ml-2">12x R$ 22,50</span>
-                        </div>
-                        <p class="text-green-600 font-medium mt-2 flex items-center">
-                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd"
-                                    d="M5.05 3.636a1 1 0 010 1.414 7 7 0 000 9.9 1 1 0 11-1.414 1.414 9 9 0 010-12.728 1 1 0 011.414 0zm9.9 0a1 1 0 011.414 0 9 9 0 010 12.728 1 1 0 11-1.414-1.414 7 7 0 000-9.9 1 1 0 010-1.414zM7.879 6.464a1 1 0 010 1.414 3 3 0 000 4.243 1 1 0 11-1.415 1.414 5 5 0 010-7.07 1 1 0 011.415 0zm4.242 0a1 1 0 011.415 0 5 5 0 010 7.072 1 1 0 01-1.415-1.415 3 3 0 000-4.242 1 1 0 010-1.415z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            Frete Grátis
-                        </p>
-                    </div>
-                    <button
-    class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-b-xl transition-colors font-semibold text-base flex items-center justify-center gap-2 whatsapp-buy-btn">
-                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M17.472 14.382c-.297-.149-1.758-.867-2.031-.967-.273-.099-.471-.148-.67.15-.198.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.447-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.007-.372-.009-.571-.009-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.363.71.306 1.263.489 1.694.626.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.288.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 6.617h-.001a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.455 4.436-9.89 9.892-9.89 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.896 6.994c-.003 5.455-4.438 9.89-9.896 9.89m8.413-18.304A11.815 11.815 0 0012.05.003C5.495.003.002 5.495 0 12.053c0 2.125.557 4.199 1.615 6.032L.057 23.953a1 1 0 001.237 1.237l5.92-1.552a11.915 11.915 0 005.835 1.482h.005c6.555 0 11.848-5.492 11.85-12.048a11.82 11.82 0 00-3.473-8.591" />
-                        </svg>
-                        Comprar Agora
-                    </a>
-                </div>
-                <!-- Product 2: XBOX CAMO -->
-                <div
-                    class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform flex flex-col h-full">
-                    <div class="relative">
-                        <div class="product-carousel slide-carousel overflow-hidden"
-                            data-images='["images/Produtos/XBOX_CAMO/IMG_20250607_143922.jpg","images/Produtos/XBOX_CAMO/IMG_20250607_143928.jpg","images/Produtos/XBOX_CAMO/IMG_20250607_143933.jpg","images/Produtos/XBOX_CAMO/IMG_20250607_143943.jpg","images/Produtos/XBOX_CAMO/IMG_20250607_143948.jpg","images/Produtos/XBOX_CAMO/IMG_20250607_143955.jpg","images/Produtos/XBOX_CAMO/IMG_20250607_144018.jpg"]'>
-                            <div class="carousel-track flex transition-transform duration-700"
-                                style="will-change: transform;">
-                                <img src="images/Produtos/XBOX_CAMO/IMG_20250607_143922.jpg" alt="Controle Xbox Camo"
-                                    class="w-full h-56 object-cover bg-white rounded-t-xl mx-auto block flex-shrink-0" />
-                                <img src="images/Produtos/XBOX_CAMO/IMG_20250607_143928.jpg" alt="Controle Xbox Camo"
-                                    class="w-full h-56 object-cover bg-white rounded-t-xl mx-auto block flex-shrink-0" />
-                                <img src="images/Produtos/XBOX_CAMO/IMG_20250607_143933.jpg" alt="Controle Xbox Camo"
-                                    class="w-full h-56 object-cover bg-white rounded-t-xl mx-auto block flex-shrink-0" />
-                                <img src="images/Produtos/XBOX_CAMO/IMG_20250607_143943.jpg" alt="Controle Xbox Camo"
-                                    class="w-full h-56 object-cover bg-white rounded-t-xl mx-auto block flex-shrink-0" />
-                                <img src="images/Produtos/XBOX_CAMO/IMG_20250607_143948.jpg" alt="Controle Xbox Camo"
-                                    class="w-full h-56 object-cover bg-white rounded-t-xl mx-auto block flex-shrink-0" />
-                                <img src="images/Produtos/XBOX_CAMO/IMG_20250607_143955.jpg" alt="Controle Xbox Camo"
-                                    class="w-full h-56 object-cover bg-white rounded-t-xl mx-auto block flex-shrink-0" />
-                                <img src="images/Produtos/XBOX_CAMO/IMG_20250607_144018.jpg" alt="Controle Xbox Camo"
-                                    class="w-full h-56 object-cover bg-white rounded-t-xl mx-auto block flex-shrink-0" />
-                            </div>
-                            <div class="carousel-dots absolute bottom-2 left-1/2 -translate-x-1/2 flex space-x-1"></div>
-                        </div>
-                        <div
-                            class="absolute top-2 right-2 bg-green-700 text-white text-xs font-bold px-2 py-1 rounded-full">
-                            XBOX CAMO</div>
-                    </div>
-                    <div class="p-4 flex-1">
-                        <h3 class="text-lg font-bold text-gray-900 dark:text-white">Controle Xbox Series Camo</h3>
-                        <p class="text-gray-600 dark:text-gray-300 text-sm mt-1">Controle Xbox Series - Camuflado Verde
-                        </p>
-                        <div class="mt-3">
-                            <span class="text-2xl font-bold text-gray-900 dark:text-white">R$ 350,00</span>
-                            <span class="text-green-600 text-sm ml-2">12x R$ 29,17</span>
-                        </div>
-                        <p class="text-green-600 font-medium mt-2 flex items-center">
-                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd"
-                                    d="M5.05 3.636a1 1 0 010 1.414 7 7 0 000 9.9 1 1 0 11-1.414 1.414 9 9 0 010-12.728 1 1 0 011.414 0zm9.9 0a1 1 0 011.414 0 9 9 0 010 12.728 1 1 0 11-1.414-1.414 7 7 0 000-9.9 1 1 0 010-1.414zM7.879 6.464a1 1 0 010 1.414 3 3 0 000 4.243 1 1 0 11-1.415 1.414 5 5 0 010-7.07 1 1 0 011.415 0zm4.242 0a1 1 0 011.415 0 5 5 0 010 7.072 1 1 0 01-1.415-1.415 3 3 0 000-4.242 1 1 0 010-1.415z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            Frete Grátis
-                        </p>
-                    </div>
-                    <button
-    class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-b-xl transition-colors font-semibold text-base flex items-center justify-center gap-2 whatsapp-buy-btn">
-                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M17.472 14.382c-.297-.149-1.758-.867-2.031-.967-.273-.099-.471-.148-.67.15-.198.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.447-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.007-.372-.009-.571-.009-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.363.71.306 1.263.489 1.694.626.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.288.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 6.617h-.001a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.455 4.436-9.89 9.892-9.89 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.896 6.994c-.003 5.455-4.438 9.89-9.896 9.89m8.413-18.304A11.815 11.815 0 0012.05.003C5.495.003.002 5.495 0 12.053c0 2.125.557 4.199 1.615 6.032L.057 23.953a1 1 0 001.237 1.237l5.92-1.552a11.915 11.915 0 005.835 1.482h.005c6.555 0 11.848-5.492 11.85-12.048a11.82 11.82 0 00-3.473-8.591" />
-                        </svg>
-                        Comprar Agora
-                    </a>
-                </div>
-                <!-- Product 3: XBOX COD -->
-                <div
-                    class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform flex flex-col h-full">
-                    <div class="relative">
-                        <div class="product-carousel slide-carousel overflow-hidden relative"
-                            data-images='["images/Produtos/XBOX_COD/IMG_20250607_143112.jpg","images/Produtos/XBOX_COD/IMG_20250607_143119.jpg","images/Produtos/XBOX_COD/IMG_20250607_143126.jpg","images/Produtos/XBOX_COD/IMG_20250607_143129.jpg","images/Produtos/XBOX_COD/IMG_20250607_143130.jpg","images/Produtos/XBOX_COD/IMG_20250607_143132.jpg"]'>
-                            <div class="carousel-track flex transition-transform duration-700"
-                                style="will-change: transform; filter: grayscale(0.5) brightness(0.8); opacity: 0.7;">
-                                <img src="images/Produtos/XBOX_COD/IMG_20250607_143112.jpg"
-                                    alt="Controle Xbox Call of Duty"
-                                    class="w-full h-56 object-cover bg-white rounded-t-xl mx-auto block flex-shrink-0" />
-                                <img src="images/Produtos/XBOX_COD/IMG_20250607_143119.jpg"
-                                    alt="Controle Xbox Call of Duty"
-                                    class="w-full h-56 object-cover bg-white rounded-t-xl mx-auto block flex-shrink-0" />
-                                <img src="images/Produtos/XBOX_COD/IMG_20250607_143126.jpg"
-                                    alt="Controle Xbox Call of Duty"
-                                    class="w-full h-56 object-cover bg-white rounded-t-xl mx-auto block flex-shrink-0" />
-                                <img src="images/Produtos/XBOX_COD/IMG_20250607_143129.jpg"
-                                    alt="Controle Xbox Call of Duty"
-                                    class="w-full h-56 object-cover bg-white rounded-t-xl mx-auto block flex-shrink-0" />
-                                <img src="images/Produtos/XBOX_COD/IMG_20250607_143130.jpg"
-                                    alt="Controle Xbox Call of Duty"
-                                    class="w-full h-56 object-cover bg-white rounded-t-xl mx-auto block flex-shrink-0" />
-                                <img src="images/Produtos/XBOX_COD/IMG_20250607_143132.jpg"
-                                    alt="Controle Xbox Call of Duty"
-                                    class="w-full h-56 object-cover bg-white rounded-t-xl mx-auto block flex-shrink-0" />
-                            </div>
-                            <span class="absolute top-4 left-1/2 -translate-x-1/2 bg-red-600 text-white text-lg font-extrabold px-4 py-1 rounded-full shadow-lg z-20 opacity-90 pointer-events-none" style="letter-spacing: 2px;">VENDIDO</span>
-                            <div class="carousel-dots absolute bottom-2 left-1/2 -translate-x-1/2 flex space-x-1"></div>
-                        </div>
-                        <div
-                            class="absolute top-2 right-2 bg-yellow-600 text-white text-xs font-bold px-2 py-1 rounded-full">
-                            XBOX COD</div>
-                    </div>
-                    <div class="p-4 flex-1">
-                        <h3 class="text-lg font-bold text-gray-900 dark:text-white">Controle Xbox Call of Duty</h3>
-                        <p class="text-gray-600 dark:text-gray-300 text-sm mt-1">Controle Xbox Series - Call of Duty
-                            Edition</p>
-                        <div class="mt-3">
-                            <span class="text-2xl font-bold text-gray-900 dark:text-white">R$ 280,00</span>
-                            <span class="text-green-600 text-sm ml-2">12x R$ 23,33</span>
-                        </div>
-                        <p class="text-green-600 font-medium mt-2 flex items-center">
-                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd"
-                                    d="M5.05 3.636a1 1 0 010 1.414 7 7 0 000 9.9 1 1 0 11-1.414 1.414 9 9 0 010-12.728 1 1 0 011.414 0zm9.9 0a1 1 0 011.414 0 9 9 0 010 12.728 1 1 0 11-1.414-1.414 7 7 0 000-9.9 1 1 0 010-1.414zM7.879 6.464a1 1 0 010 1.414 3 3 0 000 4.243 1 1 0 11-1.415 1.414 5 5 0 010-7.07 1 1 0 011.415 0zm4.242 0a1 1 0 011.415 0 5 5 0 010 7.072 1 1 0 01-1.415-1.415 3 3 0 000-4.242 1 1 0 010-1.415z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            Frete Grátis
-                        </p>
-                    </div>
-                    <button
-    class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-b-xl transition-colors font-semibold text-base flex items-center justify-center gap-2 whatsapp-buy-btn">
-                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M17.472 14.382c-.297-.149-1.758-.867-2.031-.967-.273-.099-.471-.148-.67.15-.198.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.447-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.007-.372-.009-.571-.009-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.363.71.306 1.263.489 1.694.626.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.288.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 6.617h-.001a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.455 4.436-9.89 9.892-9.89 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.896 6.994c-.003 5.455-4.438 9.89-9.896 9.89m8.413-18.304A11.815 11.815 0 0012.05.003C5.495.003.002 5.495 0 12.053c0 2.125.557 4.199 1.615 6.032L.057 23.953a1 1 0 001.237 1.237l5.92-1.552a11.915 11.915 0 005.835 1.482h.005c6.555 0 11.848-5.492 11.85-12.048a11.82 11.82 0 00-3.473-8.591" />
-                        </svg>
-                        Comprar Agora
-                    </a>
-                </div>
-                <!-- Product Example -->
+            <div id="products-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+                <!-- Products will be rendered dynamically here -->
                 <!-- <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform flex flex-col h-full">
 <div class="relative">
     <img src="images/IMG_20250606_122658.jpg" alt="DualSense God of War Ragnarök" class="w-full h-56 object-cover bg-white rounded-t-xl mx-auto block" />
@@ -485,15 +467,274 @@ Comprar Agora
                 startAuto();
             });
         }
-        document.addEventListener('DOMContentLoaded', initProductCarousels);
-    </script>
-<script>
+        
+        // Inicializa a calculadora de orçamento
+        function initOrcamentoCalculator() {
+            const orcamentoForm = document.getElementById('orcamentoForm');
+            const enviarWhatsApp = document.getElementById('enviarWhatsApp');
+            const totalElement = document.getElementById('total-orcamento');
+            
+            // Handle controller management
+            const controllersContainer = document.getElementById('controllers-container');
+            const controllerTemplate = document.getElementById('controller-template');
+            
+            // Function to handle controller removal
+            function setupRemoveButton(controllerElement) {
+                const removeBtn = controllerElement.querySelector('.remove-controller');
+                if (!removeBtn) return;
+                
+                // Remove any existing listeners to prevent duplicates
+                const newRemoveBtn = removeBtn.cloneNode(true);
+                removeBtn.parentNode.replaceChild(newRemoveBtn, removeBtn);
+                
+                newRemoveBtn.addEventListener('click', function() {
+                    const allControllers = document.querySelectorAll('.controller-item');
+                    if (allControllers.length > 1) {
+                        // Remove the controller
+                        controllerElement.remove();
+                    } else {
+                        // Reset the last controller instead of removing it
+                        const select = controllerElement.querySelector('select');
+                        if (select) select.selectedIndex = 0;
+                    }
+                });
+            }
+            
+            // Add new controller
+            document.getElementById('add-controller').addEventListener('click', function() {
+                const newController = controllerTemplate.firstElementChild.cloneNode(true);
+                newController.classList.remove('hidden');
+                controllersContainer.insertBefore(newController, controllerTemplate);
+                setupRemoveButton(newController);
+            });
+            
+            // Setup remove functionality for initial controller
+            document.querySelectorAll('.controller-item').forEach(controller => {
+                setupRemoveButton(controller);
+            });
+            
+            // Handle number input controls and checkbox synchronization
+            document.addEventListener('click', function(e) {
+                // Handle + and - buttons
+                if (e.target.classList.contains('number-btn')) {
+                    const action = e.target.getAttribute('data-action');
+                    const targetId = e.target.getAttribute('data-target');
+                    const input = document.querySelector(`input[data-target="${targetId}"]`);
+                    
+                    if (!input) return;
+                    
+                    let value = parseInt(input.value) || 0;
+                    
+                    if (action === 'increment') {
+                        value++;
+                    } else if (action === 'decrement' && value > 0) {
+                        value--;
+                    }
+                    
+                    updateNumberInput(input, targetId, value);
+                }
+                
+                // Handle checkbox clicks
+                if (e.target.type === 'checkbox' && e.target.id) {
+                    const targetId = e.target.id;
+                    const input = document.querySelector(`input[data-target="${targetId}"]`);
+                    if (input) {
+                        const newValue = e.target.checked ? 1 : 0;
+                        updateNumberInput(input, targetId, newValue);
+                    }
+                }
+            });
+            
+            // Handle direct input changes
+            document.addEventListener('change', function(e) {
+                if (e.target.type === 'number' && e.target.hasAttribute('data-target')) {
+                    const targetId = e.target.getAttribute('data-target');
+                    const value = parseInt(e.target.value) || 0;
+                    const checkbox = document.getElementById(targetId);
+                    
+                    if (checkbox) {
+                        checkbox.checked = value > 0;
+                    }
+                    
+                    // Ensure the value doesn't go below 0
+                    if (value < 0) {
+                        e.target.value = 0;
+                    }
+                    
+                    // Update total
+                    updateTotal();
+                }
+            });
+            
+            // Helper function to update number input and sync with checkbox
+            function updateNumberInput(input, targetId, value) {
+                // Ensure value is a valid number and >= 0
+                value = Math.max(0, parseInt(value) || 0);
+                input.value = value;
+                
+                // Update the corresponding checkbox
+                const checkbox = document.getElementById(targetId);
+                if (checkbox) {
+                    checkbox.checked = value > 0;
+                }
+                
+                // Update total
+                updateTotal();
+            }
+            
+            let total = 60; // Mão de obra básica
+            const precos = {
+                analogicoComum: 20,
+                analogicoOriginal: 30,
+                analogicoMagnetico: 30,
+                membranaBotoes: 25,
+                bateria: 40
+            };
+
+            // Atualiza o total quando algo muda
+            function atualizarTotal() {
+                total = 60; // Reset para mão de obra básica
+                
+                // Verifica cada peça
+                Object.keys(precos).forEach(pecaId => {
+                    const checkbox = document.getElementById(pecaId);
+                    if (!checkbox) return;
+                    
+                    if (checkbox.checked) {
+                        const quantidadeInput = document.querySelector(`[data-target="${pecaId}"]`);
+                        const quantidade = quantidadeInput ? parseInt(quantidadeInput.value) || 0 : 1;
+                        total += precos[pecaId] * (quantidade || 1);
+                    }
+                });
+                
+                // Atualiza o display
+                totalElement.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+            }
+
+            // Adiciona listeners para todas as checkboxes e inputs de quantidade
+            document.querySelectorAll('input[type="checkbox"], input[type="number"]').forEach(input => {
+                input.addEventListener('change', atualizarTotal);
+                input.addEventListener('input', atualizarTotal);
+            });
+
+            // Configura o botão do WhatsApp
+            enviarWhatsApp.addEventListener('click', function() {
+                const modeloSelect = document.getElementById('modelo');
+                if (!modeloSelect.value) {
+                    alert('Por favor, selecione o modelo do controle.');
+                    return;
+                }
+
+                let mensagem = `*Orçamento para conserto de controle*\n\n`;
+                
+                // Add all selected controllers to the message
+                const selectedControllers = Array.from(document.querySelectorAll('select[name="modelo[]"]'))
+                    .filter(select => select.value !== '')
+                    .map(select => select.options[select.selectedIndex].text);
+                
+                if (selectedControllers.length > 0) {
+                    mensagem += `*Controles (${selectedControllers.length}):*\n`;
+                    selectedControllers.forEach((controller, index) => {
+                        mensagem += `${index + 1}. ${controller}\n`;
+                    });
+                    mensagem += '\n';
+                } else {
+                    mensagem += '*Modelo:* Não selecionado\n\n';
+                }
+                mensagem += `*Itens selecionados:*\n`;
+                
+                // Adiciona itens selecionados
+                let itensSelecionados = [];
+                Object.keys(precos).forEach(pecaId => {
+                    const checkbox = document.getElementById(pecaId);
+                    if (checkbox && checkbox.checked) {
+                        const label = document.querySelector(`label[for="${pecaId}"]`).textContent.trim();
+                        const quantidadeInput = document.querySelector(`[data-target="${pecaId}"]`);
+                        if (quantidadeInput) {
+                            const quantidade = parseInt(quantidadeInput.value) || 0;
+                            if (quantidade > 0) {
+                                itensSelecionados.push(`• ${label.split(' - ')[0]} (${quantidade}x): R$ ${(precos[pecaId] * quantidade).toFixed(2).replace('.', ',')}`);
+                            }
+                        } else {
+                            itensSelecionados.push(`• ${label.split(' - ')[0]}: R$ ${precos[pecaId].toFixed(2).replace('.', ',')}`);
+                        }
+                    }
+                });
+                
+                if (itensSelecionados.length === 0) {
+                    itensSelecionados.push('Nenhum item adicional selecionado');
+                }
+                
+                mensagem += itensSelecionados.join('\n');
+                mensagem += '\n\n';
+                mensagem += `*Total: R$ ${total.toFixed(2).replace('.', ',')}*\n\n`;
+                mensagem += `*Informações adicionais:*\n`;
+                mensagem += `- Orçamento válido por 7 dias\n`;
+                mensagem += `- Pagamento à vista no ato da entrega\n`;
+                mensagem += `- Garantia de 90 dias para peças e mão de obra`;
+
+                // Codifica a mensagem para URL
+                const mensagemCodificada = encodeURIComponent(mensagem);
+                const telefone = '5512992245200'; // Número da JoyFix
+                const urlWhatsApp = `https://wa.me/${telefone}?text=${mensagemCodificada}`;
+                
+                // Abre o WhatsApp
+                window.open(urlWhatsApp, '_blank');
+            });
+
+            // Inicializa o total
+            atualizarTotal();
+        }
 // Adicione o número do WhatsApp da loja aqui no formato internacional, sem espaços ou traços
 const WHATSAPP_NUMBER = '5512992245200';
 const WHATSAPP_MESSAGE_TEMPLATE = 'Olá! Gostaria de saber se este produto está disponivel. Poderia me informar, por favor?\nProduto: ';
 const WHATSAPP_IMAGE_LABEL = 'Imagem: ';
 
+// Smooth scroll to element with offset for fixed header
+function smoothScrollToElement(elementId) {
+  const element = document.getElementById(elementId);
+  if (element) {
+    const headerOffset = 80; // Height of fixed header
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+  }
+}
+
+// Check URL for hash and scroll to section
+function handleHashScroll() {
+  if (window.location.hash) {
+    const hash = window.location.hash.substring(1); // Remove the '#'
+    if (hash === 'orçamento') {
+      // Small timeout to ensure DOM is fully loaded
+      setTimeout(() => {
+        smoothScrollToElement('orcamento');
+      }, 100);
+    }
+  }
+}
+
+// Initialize everything when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+  // Initialize product carousels
+  if (typeof initProductCarousels === 'function') {
+    initProductCarousels();
+  }
+  
+  // Initialize budget calculator
+  if (typeof initOrcamentoCalculator === 'function') {
+    initOrcamentoCalculator();
+  }
+  
+  // Handle initial hash in URL
+  handleHashScroll();
+  
+  // Handle hash changes (when clicking on anchor links after page load)
+  window.addEventListener('hashchange', handleHashScroll, false);
   document.querySelectorAll('.whatsapp-buy-btn').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
@@ -525,6 +766,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+<script src="render-products.js"></script>
 </body>
 
 </html>

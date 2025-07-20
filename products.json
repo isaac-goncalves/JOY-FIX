@@ -1,0 +1,94 @@
+[
+  {
+    "name": "DualSense PS5 Preto",
+    "description": "Controle PlayStation 5 - Preto",
+    "images": [
+      "images/Produtos/PS5_black/IMG_20250606_122658.jpg",
+      "images/Produtos/PS5_black/IMG_20250606_122705.jpg",
+      "images/Produtos/PS5_black/IMG_20250606_122708.jpg",
+      "images/Produtos/PS5_black/IMG_20250606_122720.jpg"
+    ],
+    "badge": "PS5 BLACK",
+    "badge_bg": "bg-black",
+    "price": "R$ 270,00",
+    "installments": "12x R$ 22,50",
+    "free_shipping": true,
+    "sold": true
+  },
+  {
+    "name": "Controle Xbox Series Camo",
+    "description": "Controle Xbox Series - Camuflado Verde",
+    "images": [
+      "images/Produtos/XBOX_CAMO/IMG_20250607_143922.jpg",
+      "images/Produtos/XBOX_CAMO/IMG_20250607_143928.jpg",
+      "images/Produtos/XBOX_CAMO/IMG_20250607_143933.jpg",
+      "images/Produtos/XBOX_CAMO/IMG_20250607_143943.jpg",
+      "images/Produtos/XBOX_CAMO/IMG_20250607_143948.jpg",
+      "images/Produtos/XBOX_CAMO/IMG_20250607_143955.jpg",
+      "images/Produtos/XBOX_CAMO/IMG_20250607_144018.jpg"
+    ],
+    "badge": "XBOX CAMO",
+    "badge_bg": "bg-green-700",
+    "price": "R$ 350,00",
+    "installments": "12x R$ 29,17",
+    "free_shipping": true,
+    "sold": true
+  },
+  {
+    "name": "Controle Xbox Call of Duty",
+    "description": "Controle Xbox Series - Call of Duty Edition",
+    "images": [
+      "images/Produtos/XBOX_COD/IMG_20250607_143112.jpg",
+      "images/Produtos/XBOX_COD/IMG_20250607_143119.jpg",
+      "images/Produtos/XBOX_COD/IMG_20250607_143126.jpg",
+      "images/Produtos/XBOX_COD/IMG_20250607_143129.jpg",
+      "images/Produtos/XBOX_COD/IMG_20250607_143130.jpg",
+      "images/Produtos/XBOX_COD/IMG_20250607_143132.jpg"
+    ],
+    "badge": "XBOX COD",
+    "badge_bg": "bg-yellow-600",
+    "price": "R$ 280,00",
+    "installments": "12x R$ 23,33",
+    "free_shipping": true,
+    "sold": true
+  },
+  {
+    "name": "Controle Xbox One com P2",
+    "description": "Controle Xbox One original com entrada P2 para fone de ouvido",
+    "images": [
+      "images/Produtos/XBOX_ONE_P2/IMG_20250709_120000.jpg"
+    ],
+    "badge": "XBOX ONE P2",
+    "badge_bg": "bg-green-800",
+    "price": "R$ 220,00",
+    "installments": "12x R$ 18,33",
+    "free_shipping": true,
+    "sold": false
+  },
+  {
+    "name": "Controle PS4 Slim",
+    "description": "Controle PlayStation 4 Slim original",
+    "images": [
+      "images/Produtos/PS4_SLIM/IMG_20250709_120001.jpg"
+    ],
+    "badge": "PS4 SLIM",
+    "badge_bg": "bg-blue-800",
+    "price": "R$ 180,00",
+    "installments": "12x R$ 15,00",
+    "free_shipping": true,
+    "sold": false
+  },
+  {
+    "name": "GameSir 8+ Galileo",
+    "description": "Controle GameSir 8+ Galileo para multiplataforma",
+    "images": [
+      "images/Produtos/GAMESIR_GALILEO/IMG_20250709_120002.jpg"
+    ],
+    "badge": "GAMESIR 8+",
+    "badge_bg": "bg-gray-800",
+    "price": "R$ 390,00",
+    "installments": "12x R$ 32,50",
+    "free_shipping": true,
+    "sold": false
+  }
+]

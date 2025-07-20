@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orçamento de Conserto de Controles - JoyFix</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        // Apply dark mode if user prefers it or has it set
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            html.classList.toggle('dark');
+            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .dark body {
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        .calculator-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .dark .calculator-container {
+            background: #2d3748;
+            color: #e2e8f0;
+        }
+        .total-box {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .dark .total-box {
+            background-color: #2d3748;
+            color: #e2e8f0;
+        }
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            font-weight: bold;
+        }
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+            color: white;
+        }
+        /* Dark mode styles for form elements */
+        .dark .form-control, .dark .form-select, .dark .form-check-input {
+            background-color: #4a5568;
+            border-color: #4a5568;
+            color: #e2e8f0;
+        }
+        .dark .form-control:focus, .dark .form-select:focus {
+            background-color: #4a5568;
+            color: #e2e8f0;
+        }
+        .dark .form-check-label {
+            color: #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <h2 class="text-center mb-4">Calculadora de Orçamento</h2>
+        
+        <form id="orcamentoForm">
+            <!-- Modelo do Controle -->
+            <div class="mb-4">
+                <h5>Modelo do Controle</h5>
+                <select class="form-select" id="modelo" required>
+                    <option value="" selected disabled>Selecione o modelo</option>
+                    <option value="PS5">PlayStation 5</option>
+                    <option value="PS4">PlayStation 4</option>
+                    <option value="XboxOne">Xbox One</option>
+                    <option value="XboxSeries">Xbox Series S/X</option>
+                </select>
+            </div>
+
+            <!-- Peças -->
+            <div class="mb-4">
+                <h5>Peças</h5>
+                
+                <div class="mb-2">
+                    <div class="form-check">
+                        <input class="form-check-input analogico" type="checkbox" value="20" id="analogicoComum">
+                        <label class="form-check-label" for="analogicoComum">
+                            Analógico Comum - R$ 20,00 (cada)
+                        </label>
+                        <input type="number" class="form-control-sm ms-2 quantidade" data-target="analogicoComum" min="0" value="0" style="width: 70px; display: inline-block;">
+                    </div>
+                </div>
+                
+                <div class="mb-2">
+                    <div class="form-check">
+                        <input class="form-check-input analogico" type="checkbox" value="30" id="analogicoOriginal">
+                        <label class="form-check-label" for="analogicoOriginal">
+                            Analógico Original - R$ 30,00 (cada)
+                        </label>
+                        <input type="number" class="form-control-sm ms-2 quantidade" data-target="analogicoOriginal" min="0" value="0" style="width: 70px; display: inline-block;">
+                    </div>
+                </div>
+                
+                <div class="mb-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="30" id="analogicoMagnetico">
+                        <label class="form-check-label" for="analogicoMagnetico">
+                            Analógico Magnético - R$ 30,00 (cada)
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="mb-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="25" id="membranaBotoes">
+                        <label class="form-check-label" for="membranaBotoes">
+                            Membrana dos Botões - R$ 25,00
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="mb-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="40" id="bateria">
+                        <label class="form-check-label" for="bateria">
+                            Bateria - R$ 40,00
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Outros problemas podem ser adicionados aqui -->
+                <div class="mb-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="35" id="outroProblema">
+                        <label class="form-check-label" for="outroProblema">
+                            Outro Problema - R$ 35,00
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mão de Obra -->
+            <div class="mb-4">
+                <h5>Mão de Obra</h5>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="60" id="maoDeObra" checked disabled>
+                    <label class="form-check-label" for="maoDeObra">
+                        Mão de Obra Básica - R$ 60,00
+                    </label>
+                </div>
+            </div>
+
+            <!-- Resumo -->
+            <div class="mb-4">
+                <h5>Resumo do Orçamento</h5>
+                <div id="resumoItens"></div>
+                <div class="total-box">
+                    <div class="d-flex justify-content-between">
+                        <span>Total:</span>
+                        <span id="total">R$ 60,00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botões -->
+            <div class="d-grid gap-2">
+                <button type="button" class="btn btn-primary" id="calcular">Calcular</button>
+                <button type="button" class="btn btn-whatsapp" id="enviarWhatsApp">
+                    <i class="bi bi-whatsapp"></i> Enviar por WhatsApp
+                </button>
+                <button type="button" class="btn btn-secondary mt-2" onclick="toggleDarkMode()">
+                    <i class="bi bi-moon-stars"></i> Alternar Tema
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('orcamentoForm');
+            const calcularBtn = document.getElementById('calcular');
+            const enviarWhatsAppBtn = document.getElementById('enviarWhatsApp');
+            const resumoItens = document.getElementById('resumoItens');
+            const totalElement = document.getElementById('total');
+            
+            let total = 60; // Mão de obra básica
+
+            // Atualiza a quantidade quando o input de quantidade é alterado
+            document.querySelectorAll('.quantidade').forEach(input => {
+                input.addEventListener('change', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const checkbox = document.getElementById(targetId);
+                    checkbox.checked = parseInt(this.value) > 0;
+                    calcularTotal();
+                });
+            });
+
+            // Atualiza o input de quantidade quando o checkbox é alterado
+            document.querySelectorAll('.form-check-input').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    if (this.classList.contains('analogico')) {
+                        const quantidadeInput = document.querySelector(`.quantidade[data-target="${this.id}"]`);
+                        if (this.checked && parseInt(quantidadeInput.value) === 0) {
+                            quantidadeInput.value = 1;
+                        } else if (!this.checked) {
+                            quantidadeInput.value = 0;
+                        }
+                    }
+                    calcularTotal();
+                });
+            });
+
+            // Função para calcular o total
+            function calcularTotal() {
+                total = 60; // Reset para mão de obra básica
+                let itensSelecionados = [];
+
+                // Modelo selecionado
+                const modelo = document.getElementById('modelo');
+                if (modelo.value) {
+                    itensSelecionados.push(`Modelo: ${modelo.options[modelo.selectedIndex].text}`);
+                }
+
+                // Percorre todos os checkboxes marcados
+                document.querySelectorAll('.form-check-input:checked:not(:disabled)').forEach(checkbox => {
+                    let valor = parseFloat(checkbox.value);
+                    let quantidade = 1;
+                    
+                    // Verifica se é um item com quantidade (analógicos)
+                    if (checkbox.classList.contains('analogico')) {
+                        const quantidadeInput = document.querySelector(`.quantidade[data-target="${checkbox.id}"]`);
+                        quantidade = parseInt(quantidadeInput.value) || 0;
+                        valor = valor * quantidade;
+                        if (quantidade > 0) {
+                            itensSelecionados.push(`- ${checkbox.nextElementSibling.textContent.trim().split(' - ')[0]} (${quantidade}x): R$ ${valor.toFixed(2)}`);
+                        }
+                    } else {
+                        itensSelecionados.push(`- ${checkbox.nextElementSibling.textContent.trim().split(' - ')[0]}: R$ ${valor.toFixed(2)}`);
+                    }
+                    
+                    total += valor;
+                });
+
+                // Atualiza o resumo
+                resumoItens.innerHTML = itensSelecionados.map(item => {
+                    return `<div>${item}</div>`;
+                }).join('');
+
+                // Atualiza o total
+                totalElement.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+            }
+
+            // Botão calcular
+            calcularBtn.addEventListener('click', calcularTotal);
+
+            // Botão enviar WhatsApp
+            enviarWhatsAppBtn.addEventListener('click', function() {
+                const modelo = document.getElementById('modelo');
+                if (!modelo.value) {
+                    alert('Por favor, selecione o modelo do controle.');
+                    return;
+                }
+
+                let mensagem = `*Orçamento para conserto de controle*\n\n`;
+                mensagem += `*Modelo:* ${modelo.options[modelo.selectedIndex].text}\n\n`;
+                mensagem += `*Itens selecionados:*\n${document.getElementById('resumoItens').textContent.replace(/-/g, '•')}\n`;
+                mensagem += `*Total: R$ ${total.toFixed(2).replace('.', ',')}*\n\n`;
+                mensagem += `*Informações adicionais:*\n- Orçamento válido por 7 dias\n- Pagamento à vista no ato da entrega\n- Garantia de 90 dias para peças e mão de obra`;
+
+                // Codifica a mensagem para URL
+                const mensagemCodificada = encodeURIComponent(mensagem);
+                
+                // Número de telefone da loja
+                const telefone = '5512992245200';
+                
+                // Cria o link do WhatsApp
+                const urlWhatsApp = `https://wa.me/${telefone}?text=${mensagemCodificada}`;
+                
+                // Abre o WhatsApp
+                window.open(urlWhatsApp, '_blank');
+            });
+        });
+    </script>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        /* Dark mode styles for form elements */
+        .dark .form-control, .dark .form-select, .dark .form-check-input {
+            background-color: #4a5568;
+            border-color: #4a5568;
+            color: #e2e8f0;
+        }
+        .dark .form-control:focus, .dark .form-select:focus {
+            background-color: #4a5568;
+            color: #e2e8f0;
+        }
+        .dark .form-check-label {
+            color: #e2e8f0;
+        }
+        .dark .total-box {
+            background-color: #2d3748;
+            color: #e2e8f0;
+        }
+    </style>
+</body>
+</html>
