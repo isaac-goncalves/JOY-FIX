@@ -133,7 +133,7 @@
                         <!-- Controller Template (hidden) -->
                         <div id="controller-template" class="hidden">
                             <div class="controller-item flex items-center space-x-2 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                                <select class="flex-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white h-10 px-3 py-2 appearance-none bg-white dark:bg-gray-600 bg-[url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e\")] bg-[right_0.5rem_center] bg-no-repeat pr-8" name="modelo[]" required>
+                                <select class="flex-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white h-10 px-3 py-2 appearance-none bg-white dark:bg-gray-600 bg-[url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e')] bg-[right_0.5rem_center] bg-no-repeat pr-8" name="modelo[]" required>
                                     <option value="" selected disabled>Selecione o modelo</option>
                                     <option value="PS5">PlayStation 5</option>
                                     <option value="PS4">PlayStation 4</option>
@@ -170,23 +170,18 @@
                     <!-- Peças -->
                     <div class="space-y-4">
                         <h5 class="text-lg font-medium text-gray-900 dark:text-white">Peças</h5>
-                        
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center">
-                                <input type="checkbox" id="analogicoComum" class="h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600" style="display: none;">
-                            </div>
-                        </div>
+                       
                         
                         <div class="flex items-center justify-between">
                             <div class="flex items-center">
                                 <input type="checkbox" id="analogicoOriginal" class="h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="analogicoOriginal" class="ml-2 text-gray-700 dark:text-gray-300">
-                                    Analógico - R$ 20,00 (cada)
+                                    Analógico Original - R$ 30,00 (cada)
                                 </label>
                             </div>
                             <div class="flex items-center">
                                 <button type="button" class="number-btn w-8 h-8 flex items-center justify-center bg-gray-200 dark:bg-gray-600 rounded-l-md hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors" data-target="analogicoOriginal" data-action="decrement">-</button>
-                                <input type="number" class="w-16 text-center border-t border-b border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white h-8 px-2" min="0" value="0" data-target="analogicoOriginal" inputmode="numeric" pattern="[0-9]*">
+                                <input type="number" class="w-16 text-center border-t border-b border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white h-8 px-2 flex items-center justify-center" min="0" value="0" data-target="analogicoOriginal" inputmode="numeric" pattern="[0-9]*" style="-moz-appearance: textfield;">
                                 <button type="button" class="number-btn w-8 h-8 flex items-center justify-center bg-gray-200 dark:bg-gray-600 rounded-r-md hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors" data-target="analogicoOriginal" data-action="increment">+</button>
                             </div>
                         </div>
@@ -195,12 +190,12 @@
                             <div class="flex items-center">
                                 <input type="checkbox" id="analogicoMagnetico" class="h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="analogicoMagnetico" class="ml-2 text-gray-700 dark:text-gray-300">
-                                    Analógico Magnético - R$ 35,00 (cada)
+                                    Analógico Magnético - R$ 30,00 (cada)
                                 </label>
                             </div>
                             <div class="flex items-center">
                                 <button type="button" class="number-btn w-8 h-8 flex items-center justify-center bg-gray-200 dark:bg-gray-600 rounded-l-md hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors" data-target="analogicoMagnetico" data-action="decrement">-</button>
-                                <input type="number" class="w-16 text-center border-t border-b border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white h-8 px-2" min="0" value="0" data-target="analogicoMagnetico" inputmode="numeric" pattern="[0-9]*">
+                                <input type="number" class="w-16 text-center border-t border-b border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white h-8 px-2 flex items-center justify-center" value="0" data-target="analogicoMagnetico" inputmode="numeric" pattern="[0-9]*" style="-moz-appearance: textfield;">
                                 <button type="button" class="number-btn w-8 h-8 flex items-center justify-center bg-gray-200 dark:bg-gray-600 rounded-r-md hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors" data-target="analogicoMagnetico" data-action="increment">+</button>
                             </div>
                         </div>
@@ -209,7 +204,7 @@
                             <div class="flex items-center">
                                 <input type="checkbox" id="membranaBotoes" class="h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="membranaBotoes" class="ml-2 text-gray-700 dark:text-gray-300">
-                                    Membrana de Botões (todos) - R$ 25,00
+                                    Demais Botões - R$ 25,00
                                 </label>
                             </div>
                         </div>
@@ -218,25 +213,7 @@
                             <div class="flex items-center">
                                 <input type="checkbox" id="bateria" class="h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="bateria" class="ml-2 text-gray-700 dark:text-gray-300">
-                                    Bateria PS4 - R$ 60,00
-                                </label>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center">
-                                <input type="checkbox" id="bateriaPS5" class="h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600">
-                                <label for="bateriaPS5" class="ml-2 text-gray-700 dark:text-gray-300">
-                                    Bateria PS5 - R$ 80,00
-                                </label>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center">
-                                <input type="checkbox" id="reparoPlacaMae" class="h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600">
-                                <label for="reparoPlacaMae" class="ml-2 text-gray-700 dark:text-gray-300">
-                                    Reparo na Placa Mãe - R$ 40,00
+                                    Bateria - R$ 40,00
                                 </label>
                             </div>
                         </div>
@@ -249,6 +226,12 @@
                             <span class="font-medium text-gray-900 dark:text-white">R$ 60,00</span>
                         </div>
                     </div>
+
+                    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                        <strong style="color: #ff3737; font-weight: bold; font-size: 16px;">Observação:</strong> Os valores e a disponibilidade das peças podem variar. Entre em contato conosco para consultar os valores e a disponibilidade atualizados.
+                    </p>
+                    
+                    
 
                     <!-- Total -->
                     <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
@@ -518,23 +501,11 @@ Comprar Agora
                 newController.classList.remove('hidden');
                 controllersContainer.insertBefore(newController, controllerTemplate);
                 setupRemoveButton(newController);
-                
-                // Add change event to update battery options when controller changes
-                const select = newController.querySelector('select');
-                if (select) {
-                    select.addEventListener('change', updateBatteryOptions);
-                }
             });
             
-            // Setup remove functionality and change events for initial controllers
+            // Setup remove functionality for initial controller
             document.querySelectorAll('.controller-item').forEach(controller => {
                 setupRemoveButton(controller);
-                
-                // Add change event to update battery options when controller changes
-                const select = controller.querySelector('select');
-                if (select) {
-                    select.addEventListener('change', updateBatteryOptions);
-                }
             });
             
             // Handle number input controls and checkbox synchronization
@@ -606,58 +577,13 @@ Comprar Agora
                 updateTotal();
             }
             
-            // Function to update battery options visibility based on selected controllers
-            function updateBatteryOptions() {
-                const bateriaPS4 = document.getElementById('bateria');
-                const bateriaPS5 = document.getElementById('bateriaPS5');
-                const bateriaContainerPS4 = bateriaPS4 ? bateriaPS4.closest('.flex.items-center.justify-between') : null;
-                const bateriaContainerPS5 = bateriaPS5 ? bateriaPS5.closest('.flex.items-center.justify-between') : null;
-                
-                // Hide both battery options by default
-                if (bateriaContainerPS4) bateriaContainerPS4.style.display = 'none';
-                if (bateriaContainerPS5) bateriaContainerPS5.style.display = 'none';
-                
-                // Check all selected controllers
-                const selectedControllers = Array.from(document.querySelectorAll('select[name="modelo[]"]'));
-                const hasPS4 = selectedControllers.some(select => select.value === 'PS4');
-                const hasPS5 = selectedControllers.some(select => select.value === 'PS5');
-                
-                // Show PS4 battery if any PS4 controller is selected
-                if (bateriaContainerPS4 && hasPS4) {
-                    bateriaContainerPS4.style.display = 'flex';
-                }
-                
-                // Show PS5 battery if any PS5 controller is selected
-                if (bateriaContainerPS5 && hasPS5) {
-                    bateriaContainerPS5.style.display = 'flex';
-                }
-                
-                // Uncheck and reset battery options that are now hidden
-                if (bateriaPS4 && !hasPS4) {
-                    bateriaPS4.checked = false;
-                    const inputPS4 = document.querySelector('[data-target="bateria"]');
-                    if (inputPS4) inputPS4.value = '0';
-                }
-                
-                if (bateriaPS5 && !hasPS5) {
-                    bateriaPS5.checked = false;
-                    const inputPS5 = document.querySelector('[data-target="bateriaPS5"]');
-                    if (inputPS5) inputPS5.value = '0';
-                }
-                
-                // Update the total after changing visibility
-                updateTotal();
-            }
-            
             let total = 60; // Mão de obra básica
             const precos = {
-                analogicoComum: 0, // Hidden field
-                analogicoOriginal: 20, // Changed from 30 to 20
-                analogicoMagnetico: 35, // Changed from 30 to 35
+                analogicoComum: 20,
+                analogicoOriginal: 30,
+                analogicoMagnetico: 30,
                 membranaBotoes: 25,
-                bateria: 60, // PS4 battery
-                bateriaPS5: 80, // PS5 battery
-                reparoPlacaMae: 40 // New field
+                bateria: 40
             };
 
             // Atualiza o total quando algo muda
@@ -666,9 +592,6 @@ Comprar Agora
                 
                 // Verifica cada peça
                 Object.keys(precos).forEach(pecaId => {
-                    // Skip hidden fields
-                    if (precos[pecaId] === 0) return;
-                    
                     const checkbox = document.getElementById(pecaId);
                     if (!checkbox) return;
                     
@@ -690,27 +613,23 @@ Comprar Agora
             });
 
             // Configura o botão do WhatsApp
-            enviarWhatsApp.addEventListener('click', function(e) {
-                e.preventDefault(); // Prevent form submission
-                
-                // Get all selected controllers
-                const selectedControllers = Array.from(document.querySelectorAll('select[name="modelo[]"]'))
-                    .filter(select => select.value !== '');
-                    
-                if (selectedControllers.length === 0) {
-                    alert('Por favor, selecione pelo menos um controle.');
+            enviarWhatsApp.addEventListener('click', function() {
+                const modeloSelect = document.getElementById('modelo');
+                if (!modeloSelect.value) {
+                    alert('Por favor, selecione o modelo do controle.');
                     return;
                 }
 
                 let mensagem = `*Orçamento para conserto de controle*\n\n`;
                 
-                // Get controller names for the message
-                const controllerNames = selectedControllers
+                // Add all selected controllers to the message
+                const selectedControllers = Array.from(document.querySelectorAll('select[name="modelo[]"]'))
+                    .filter(select => select.value !== '')
                     .map(select => select.options[select.selectedIndex].text);
                 
-                if (controllerNames.length > 0) {
-                    mensagem += `*Controles (${controllerNames.length}):*\n`;
-                    controllerNames.forEach((controller, index) => {
+                if (selectedControllers.length > 0) {
+                    mensagem += `*Controles (${selectedControllers.length}):*\n`;
+                    selectedControllers.forEach((controller, index) => {
                         mensagem += `${index + 1}. ${controller}\n`;
                     });
                     mensagem += '\n';
@@ -752,18 +671,12 @@ Comprar Agora
                 // Codifica a mensagem para URL
                 const mensagemCodificada = encodeURIComponent(mensagem);
                 const telefone = '5512992245200'; // Número da JoyFix
-                
-                // Open WhatsApp with the message
-                window.open(`https://wa.me/${telefone}?text=${mensagemCodificada}`, '_blank');
                 const urlWhatsApp = `https://wa.me/${telefone}?text=${mensagemCodificada}`;
                 
                 // Abre o WhatsApp
                 window.open(urlWhatsApp, '_blank');
             });
 
-            // Initialize battery options visibility
-            updateBatteryOptions();
-            
             // Inicializa o total
             atualizarTotal();
         }
