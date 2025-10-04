@@ -244,7 +244,7 @@
     }
 
     const message = buildWhatsAppMessage();
-    const phone = (window.WHATSAPP_NUMBER || '5512992245200').replace(/\D+/g, '');
+    const phone = (window.WHATSAPP_NUMBER || '5512992265665').replace(/\D+/g, '');
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     
     window.open(url, '_blank');
