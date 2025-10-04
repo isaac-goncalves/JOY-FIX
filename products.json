@@ -91,7 +91,7 @@
       "images/Produtos/XBOX_ONE_S/IMG_20250511_161706.jpg"
     ],
     "badge": "XBOX ONE S",
-    "badge_bg": "bg-white text-gray-800 border border-gray-300",
+    "badge_bg": "bg-white text-black border border-gray-300",
     "price": "R$ 240,00",
     "installments": "12x R$ 20,00",
     "free_shipping": true,

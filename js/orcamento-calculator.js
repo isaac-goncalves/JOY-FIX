@@ -11,7 +11,8 @@
   const STATE = {
     initialized: false,
     total: 0,
-    baseLabor: 70,
+    baseLabor: 60, // Default labor cost
+    laborPS5: 70,  // PS5 labor cost
     controllers: [],
     prices: {
       analogicoOriginal: 20,
@@ -155,12 +156,33 @@
     calculateTotal();
   }
 
+  // Check if any PS5 controller is selected
+  function hasPS5Controller() {
+    return $$('select[name="modelo[]"]').some(select => select.value === 'PS5');
+  }
+
+  // Get current labor cost based on controller selection
+  function getCurrentLaborCost() {
+    return hasPS5Controller() ? STATE.laborPS5 : STATE.baseLabor;
+  }
+
+  // Update labor display
+  function updateLaborDisplay() {
+    const laborElement = $('.text-gray-700.dark\\:text-gray-300.font-semibold');
+    const laborPriceElement = laborElement ? laborElement.parentElement.querySelector('.font-bold.text-xl') : null;
+    
+    if (laborPriceElement) {
+      const currentLabor = getCurrentLaborCost();
+      laborPriceElement.textContent = formatBRL(currentLabor);
+    }
+  }
+
   // Total calculation
   function calculateTotal() {
     const totalElement = $('#total-orcamento');
     if (!totalElement) return;
 
-    let total = STATE.baseLabor;
+    let total = getCurrentLaborCost(); // Use dynamic labor cost
 
     // Calculate parts total
     Object.keys(STATE.prices).forEach((partId) => {
@@ -365,6 +387,10 @@
         
         // Update battery option based on controller selection
         updateBatteryOption();
+        
+        // Update labor cost display and recalculate total
+        updateLaborDisplay();
+        calculateTotal();
       });
     });
   }
@@ -386,6 +412,9 @@
 
     // Check battery option on initial load
     updateBatteryOption();
+
+    // Update labor display on initial load
+    updateLaborDisplay();
 
     // Calculate initial total
     calculateTotal();
