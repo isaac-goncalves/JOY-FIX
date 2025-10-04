@@ -11,7 +11,7 @@
   const STATE = {
     initialized: false,
     total: 0,
-    baseLabor: 60,
+    baseLabor: 70,
     controllers: [],
     prices: {
       analogicoOriginal: 20,
@@ -235,14 +235,7 @@
   }
 
   function sendToWhatsApp() {
-    // Validate at least one controller is selected
-    const hasController = $$('select[name="modelo[]"]').some(select => select.value !== '');
-    
-    if (!hasController) {
-      showNotification('Por favor, selecione pelo menos um modelo de controle.', 'warning');
-      return;
-    }
-
+    // Allow sending even without controller selection
     const message = buildWhatsAppMessage();
     const phone = (window.WHATSAPP_NUMBER || '5512992265665').replace(/\D+/g, '');
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
