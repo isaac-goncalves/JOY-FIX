@@ -53,25 +53,14 @@
     "sold": true
   },
   {
-    "name": "Controle Xbox One com P2",
-    "description": "Controle Xbox One original com entrada P2 para fone de ouvido",
+    "name": "Controle PS4 Preto",
+    "description": "Controle PlayStation 4 original - Preto",
     "images": [
-      "images/Produtos/XBOX_ONE_P2/IMG_20250709_120000.jpg"
+      "images/Produtos/PS4/IMG_20250811_181350.jpg",
+      "images/Produtos/PS4/IMG_20250811_181356.jpg",
+      "images/Produtos/PS4/IMG_20250811_181400.jpg"
     ],
-    "badge": "XBOX ONE P2",
-    "badge_bg": "bg-green-800",
-    "price": "R$ 220,00",
-    "installments": "12x R$ 18,33",
-    "free_shipping": true,
-    "sold": false
-  },
-  {
-    "name": "Controle PS4 Slim",
-    "description": "Controle PlayStation 4 Slim original",
-    "images": [
-      "images/Produtos/PS4_SLIM/IMG_20250709_120001.jpg"
-    ],
-    "badge": "PS4 SLIM",
+    "badge": "PS4",
     "badge_bg": "bg-blue-800",
     "price": "R$ 180,00",
     "installments": "12x R$ 15,00",
@@ -79,15 +68,32 @@
     "sold": false
   },
   {
-    "name": "GameSir 8+ Galileo",
-    "description": "Controle GameSir 8+ Galileo para multiplataforma",
+    "name": "GameSir G8+ Galileo",
+    "description": "Controle GameSir G8+ Galileo para smartphone - Multiplataforma",
     "images": [
-      "images/Produtos/GAMESIR_GALILEO/IMG_20250709_120002.jpg"
+      "images/Produtos/GAMESIR/Gamesir-Galileo-G8-Plus-review-feature-image-scaled.jpg",
+      "images/Produtos/GAMESIR/27864d70-a0e0-429e-81cd-44d465e637f3.png.webp"
     ],
-    "badge": "GAMESIR 8+",
-    "badge_bg": "bg-gray-800",
+    "badge": "GAMESIR G8+",
+    "badge_bg": "bg-purple-700",
     "price": "R$ 390,00",
     "installments": "12x R$ 32,50",
+    "free_shipping": true,
+    "sold": false
+  },
+  {
+    "name": "Controle Xbox One S Branco",
+    "description": "Controle Xbox One S original - Branco",
+    "images": [
+      "images/Produtos/XBOX_ONE_S/IMG_20250511_161634.jpg",
+      "images/Produtos/XBOX_ONE_S/IMG_20250511_161638.jpg",
+      "images/Produtos/XBOX_ONE_S/IMG_20250511_161700.jpg",
+      "images/Produtos/XBOX_ONE_S/IMG_20250511_161706.jpg"
+    ],
+    "badge": "XBOX ONE S",
+    "badge_bg": "bg-white text-gray-800",
+    "price": "R$ 240,00",
+    "installments": "12x R$ 20,00",
     "free_shipping": true,
     "sold": false
   }

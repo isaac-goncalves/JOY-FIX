@@ -66,4 +66,25 @@ async function renderProducts() {
   });
 }
 
-window.addEventListener('DOMContentLoaded', renderProducts);
+// Load external script once by id
+function loadScriptOnce(src, id) {
+  if (id && document.getElementById(id)) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    if (id) s.id = id;
+    s.src = src;
+    s.async = true;
+    s.onload = () => resolve();
+    s.onerror = reject;
+    document.head.appendChild(s);
+  });
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  // Render products if the list exists
+  renderProducts();
+
+  // Load budget calculator logic and auto-init if the form exists
+  loadScriptOnce('js/orcamento-calculator.js', 'orcamento-calculator')
+    .catch(() => {/* ignore load errors on pages without the script */});
+});
