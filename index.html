@@ -717,34 +717,38 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Handle hash changes (when clicking on anchor links after page load)
   window.addEventListener('hashchange', handleHashScroll, false);
-  document.querySelectorAll('.whatsapp-buy-btn').forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      // Tenta encontrar o nome do produto no mesmo card
-      let card = btn.closest('.flex-col');
-      let productName = 'Produto';
-      let imgUrl = '';
-      if (card) {
-        let h3 = card.querySelector('h3');
-        if (h3) productName = h3.textContent.trim();
-        // Tenta pegar a primeira imagem do carousel
-        let img = card.querySelector('.carousel-track img, .product-carousel img, img');
-        if (img) {
-          imgUrl = img.src;
-          // Se o src for relativo, torna absoluto
-          if (imgUrl && !/^https?:\/\//i.test(imgUrl)) {
-            imgUrl = window.location.origin + (imgUrl.startsWith('/') ? imgUrl : '/' + imgUrl);
-          }
+  
+  // Use event delegation for dynamically rendered buy buttons
+  document.addEventListener('click', function(e) {
+    // Check if clicked element or its parent is a buy button
+    const btn = e.target.closest('.whatsapp-buy-btn');
+    if (!btn) return;
+    
+    e.preventDefault();
+    // Tenta encontrar o nome do produto no mesmo card
+    let card = btn.closest('.product-card');
+    let productName = 'Produto';
+    let imgUrl = '';
+    if (card) {
+      let h3 = card.querySelector('h3');
+      if (h3) productName = h3.textContent.trim();
+      // Tenta pegar a primeira imagem do carousel
+      let img = card.querySelector('.carousel-track img, .product-carousel img, img');
+      if (img) {
+        imgUrl = img.src;
+        // Se o src for relativo, torna absoluto
+        if (imgUrl && !/^https?:\/\//i.test(imgUrl)) {
+          imgUrl = window.location.origin + (imgUrl.startsWith('/') ? imgUrl : '/' + imgUrl);
         }
       }
-      let msg = WHATSAPP_MESSAGE_TEMPLATE + productName;
-      if (imgUrl) {
-        msg += WHATSAPP_IMAGE_LABEL + imgUrl;
-      }
-      msg = encodeURIComponent(msg);
-      const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
-      window.open(waUrl, '_blank');
-    });
+    }
+    let msg = WHATSAPP_MESSAGE_TEMPLATE + productName;
+    if (imgUrl) {
+      msg += WHATSAPP_IMAGE_LABEL + imgUrl;
+    }
+    msg = encodeURIComponent(msg);
+    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+    window.open(waUrl, '_blank');
   });
 });
 </script>
