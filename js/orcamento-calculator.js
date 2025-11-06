@@ -1,5 +1,5 @@
 /**
- * JoyFix - OrÃ§amento Calculator Component
+ * JoyFix - Orçamento Calculator Component
  * Componentized calculator with fixed logic and improved UI
  * @version 2.0
  */
@@ -207,7 +207,7 @@
 
   // WhatsApp message builder
   function buildWhatsAppMessage() {
-    const lines = ['*OrÃ§amento para Conserto de Controle*', ''];
+    const lines = ['*Orçamento para Conserto de Controle*', ''];
 
     // Controllers
     const selectedControllers = $$('select[name="modelo[]"]')
@@ -235,23 +235,23 @@
       const quantity = qtyInput ? Math.max(1, sanitizeNumber(qtyInput.value, 1)) : 1;
       
       const itemTotal = STATE.prices[partId] * quantity;
-      selectedParts.push(`â€¢ ${labelText} (${quantity}x): ${formatBRL(itemTotal)}`);
+      selectedParts.push(`? ${labelText} (${quantity}x): ${formatBRL(itemTotal)}`);
     });
 
     if (selectedParts.length > 0) {
-      lines.push('*PeÃ§as Selecionadas:*');
+      lines.push('*Peças Selecionadas:*');
       lines.push(...selectedParts);
       lines.push('');
     }
 
-    lines.push(`*MÃ£o de Obra:* ${formatBRL(STATE.baseLabor)}`);
+    lines.push(`*Mão de Obra:* ${formatBRL(STATE.baseLabor)}`);
     lines.push('');
     lines.push(`*Total: ${formatBRL(STATE.total)}*`);
     lines.push('');
-    lines.push('*InformaÃ§Ãµes Adicionais:*');
-    lines.push('â€¢ OrÃ§amento vÃ¡lido por 7 dias');
-    lines.push('â€¢ Pagamento Ã  vista no ato da entrega');
-    lines.push('â€¢ Garantia de 90 dias para peÃ§as e mÃ£o de obra');
+    lines.push('*Informações Adicionais:*');
+    lines.push('? Orçamento válido por 7 dias');
+    lines.push('? Pagamento à vista no ato da entrega');
+    lines.push('? Garantia de 90 dias para peças e mão de obra');
 
     return lines.join('\n');
   }
@@ -419,7 +419,7 @@
     // Calculate initial total
     calculateTotal();
 
-    console.log('âœ“ JoyFix Budget Calculator initialized');
+    console.log('? JoyFix Budget Calculator initialized');
   }
 
   // Public API
