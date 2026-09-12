@@ -1,7 +1,7 @@
 /**
- * JoyFix - Or�amento Calculator Component
+ * JoyFix - Orçamento Calculator Component
  * Componentized calculator with fixed logic and improved UI
- * @version 2.0
+ * @version 2.1
  */
 
 (function () {
@@ -37,14 +37,14 @@
 
   // Controller management
   let isAddingController = false; // Prevent multiple simultaneous adds
-  
+
   function setupQuantityButtons() {
     // Remove old listeners and set up new ones for all buttons
     $$('.number-btn').forEach((button) => {
       // Clone to remove old listeners
       const newButton = button.cloneNode(true);
       button.parentNode.replaceChild(newButton, button);
-      
+
       newButton.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -52,12 +52,12 @@
       });
     });
   }
-  
+
   function addController() {
-    // Prevent adding multiple controllers at once
+    // Prevent multiple simultaneous adds
     if (isAddingController) return;
     isAddingController = true;
-    
+
     const container = $('#controllers-container');
     const template = $('#controller-template');
     if (!container || !template) {
@@ -69,7 +69,7 @@
     newController.classList.remove('hidden');
     container.insertBefore(newController, template);
     setupRemoveButton(newController);
-    
+
     // Add animation
     newController.style.opacity = '0';
     newController.style.transform = 'translateY(-10px)';
@@ -77,7 +77,7 @@
       newController.style.transition = 'all 0.3s ease';
       newController.style.opacity = '1';
       newController.style.transform = 'translateY(0)';
-      
+
       // Re-enable adding after animation completes
       setTimeout(() => {
         isAddingController = false;
@@ -140,7 +140,7 @@
     const action = button.getAttribute('data-action');
     const targetId = button.getAttribute('data-target');
     const input = $(`input[data-target="${targetId}"]`);
-    
+
     if (!input) return;
 
     let value = sanitizeNumber(input.value, 0);
@@ -190,7 +190,7 @@
 
       const qtyInput = $(`input[data-target="${partId}"]`);
       const quantity = qtyInput ? sanitizeNumber(qtyInput.value, 1) : 1;
-      
+
       // Ensure at least 1 if checked
       const finalQty = Math.max(1, quantity);
       total += STATE.prices[partId] * finalQty;
@@ -206,7 +206,7 @@
 
   // WhatsApp message builder
   function buildWhatsAppMessage() {
-    const lines = ['*Or�amento para Conserto de Controle*', ''];
+    const lines = ['*Orçamento para Conserto de Controle*', ''];
 
     // Controllers
     const selectedControllers = $$('select[name="modelo[]"]')
@@ -228,29 +228,29 @@
       if (!checkbox || !checkbox.checked) return;
 
       const label = $(`label[for="${partId}"]`);
-      const labelText = label ? label.textContent.trim().split(' - ')[0] : partId;
-      
+      const labelText = label ? label.textContent.trim().split('R$')[0].trim() : partId;
+
       const qtyInput = $(`input[data-target="${partId}"]`);
       const quantity = qtyInput ? Math.max(1, sanitizeNumber(qtyInput.value, 1)) : 1;
-      
+
       const itemTotal = STATE.prices[partId] * quantity;
-      selectedParts.push(`? ${labelText} (${quantity}x): ${formatBRL(itemTotal)}`);
+      selectedParts.push(`• ${labelText} (${quantity}x): ${formatBRL(itemTotal)}`);
     });
 
     if (selectedParts.length > 0) {
-      lines.push('*Pe�as Selecionadas:*');
+      lines.push('*Peças Selecionadas:*');
       lines.push(...selectedParts);
       lines.push('');
     }
 
-    lines.push(`*M�o de Obra:* ${formatBRL(STATE.baseLabor)}`);
+    lines.push(`*Mão de Obra:* ${formatBRL(getCurrentLaborCost())}`);
     lines.push('');
     lines.push(`*Total: ${formatBRL(STATE.total)}*`);
     lines.push('');
-    lines.push('*Informa��es Adicionais:*');
-    lines.push('? Or�amento v�lido por 7 dias');
-    lines.push('? Pagamento � vista no ato da entrega');
-    lines.push('? Garantia de 90 dias para pe�as e m�o de obra');
+    lines.push('*Informações Adicionais:*');
+    lines.push('• Orçamento válido por 7 dias');
+    lines.push('• Pagamento à vista no ato da entrega');
+    lines.push('• Garantia de 90 dias para peças e mão de obra');
 
     return lines.join('\n');
   }
@@ -260,7 +260,7 @@
     const message = buildWhatsAppMessage();
     const phone = (window.WHATSAPP_NUMBER || '5512992265665').replace(/\D+/g, '');
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-    
+
     window.open(url, '_blank');
     showNotification('Abrindo WhatsApp...', 'success');
   }
@@ -275,10 +275,12 @@
       top: 100px;
       right: 20px;
       padding: 16px 24px;
-      background: ${type === 'success' ? '#10b981' : type === 'warning' ? '#f59e0b' : '#3b82f6'};
-      color: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      background: ${type === 'success' ? '#25D366' : type === 'warning' ? '#f59e0b' : '#FF2E97'};
+      color: ${type === 'warning' ? '#17181C' : '#ffffff'};
+      border: 2px solid #17181C;
+      box-shadow: 4px 4px 0 #17181C;
+      font-family: 'Space Mono', monospace;
+      font-weight: 700;
       z-index: 1000;
       animation: slideIn 0.3s ease;
     `;
@@ -292,7 +294,7 @@
 
   // Check if any Xbox controller (One or Series) is selected
   function hasXboxController() {
-    return $$('select[name="modelo[]"]').some(select => 
+    return $$('select[name="modelo[]"]').some(select =>
       select.value === 'XboxOne' || select.value === 'XboxSeries'
     );
   }
@@ -301,7 +303,7 @@
   function updateBatteryOption() {
     const batteryCheckbox = $('#bateria');
     const batteryContainer = batteryCheckbox ? batteryCheckbox.closest('.part-row') : null;
-    
+
     if (!batteryContainer) return;
 
     if (hasXboxController()) {
@@ -310,11 +312,11 @@
       batteryContainer.style.pointerEvents = 'none';
       batteryCheckbox.checked = false;
       batteryCheckbox.disabled = true;
-      
+
       // Clear quantity if exists
       const qtyInput = $('input[data-target="bateria"]');
       if (qtyInput) qtyInput.value = 0;
-      
+
       calculateTotal();
     } else {
       // Enable battery option for other controllers (PS4, PS5, etc.)
@@ -383,10 +385,10 @@
         } else {
           select.classList.remove('selected');
         }
-        
+
         // Update battery option based on controller selection
         updateBatteryOption();
-        
+
         // Update labor cost display and recalculate total
         updateLaborDisplay();
         calculateTotal();
@@ -397,7 +399,7 @@
   // Initialization
   function init() {
     if (STATE.initialized) return;
-    
+
     const form = $('#orcamentoForm');
     if (!form) return;
 
@@ -418,7 +420,7 @@
     // Calculate initial total
     calculateTotal();
 
-    console.log('? JoyFix Budget Calculator initialized');
+    console.log(' JoyFix Budget Calculator initialized');
   }
 
   // Public API
@@ -458,8 +460,9 @@
         0%, 100% { transform: scale(1); }
         50% { transform: scale(1.05); }
       }
-      select.selected {
-        border-color: var(--c-pink, #FF2E97);
+      #orcamentoForm select.selected {
+        border-color: var(--c-pink, #FF2E97) !important;
+        box-shadow: 3px 3px 0 var(--c-shadow, #17181C) !important;
       }
     `;
     document.head.appendChild(style);
