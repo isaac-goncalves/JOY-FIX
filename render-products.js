@@ -19,13 +19,13 @@ async function renderProducts() {
     const imagesJson = JSON.stringify(product.images);
     let carouselImages = '';
     for (const img of product.images) {
-      carouselImages += `<img src="${img}" alt="${product.name}" class=\"w-full h-56 object-cover bg-white rounded-t-xl mx-auto block flex-shrink-0\" />`;
+      carouselImages += `<img src="${img}" alt="${product.name}" class=\"w-full h-56 object-cover bg-white block flex-shrink-0\" />`;
     }
     // Sold style
     const soldStyle = product.sold ? 'filter: grayscale(0.5) brightness(0.8); opacity: 0.7;' : '';
     // Sold button
-    const soldBtnBg = product.sold ? 'bg-gray-400' : 'bg-blue-600 hover:bg-blue-700 whatsapp-buy-btn';
-    const soldBtnExtra = product.sold ? 'cursor-not-allowed opacity-60' : '';
+    const soldBtnBg = product.sold ? 'bg-[#3f434c] text-[#c9c6bd]' : 'bg-joy-yellow text-[#17181C] hover:bg-[#ffdf52] whatsapp-buy-btn';
+    const soldBtnExtra = product.sold ? 'cursor-not-allowed opacity-80' : '';
     const soldBtnDisabled = product.sold ? 'disabled' : '';
     const soldBtnText = product.sold ? 'Vendido' : 'Comprar Agora';
     // Badge bg fallback

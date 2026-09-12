@@ -4,18 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JoyFix - Especialista em Conserto de Controles</title>
-    
-    <!-- Favicon - Videogame icons created by Hilmy Abiyyu A. - Flaticon -->
+    <title>JoyFix - Conserto de Controles em Taubaté</title>
+    <meta name="description" content="Conserto de controles PlayStation, Xbox e Nintendo em Taubaté-SP. Diagnóstico gratuito, garantia de 90 dias e envio pelos Correios para todo o Brasil.">
+
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🎮</text></svg>">
-    <link rel="alternate icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🎮</text></svg>">
-    
+
     <script>
-        // Initialize dark mode BEFORE page renders to prevent flash
         (function() {
             const theme = localStorage.theme;
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
             if (theme === 'dark' || (!theme && prefersDark)) {
                 document.documentElement.classList.add('dark');
             } else {
@@ -23,15 +20,136 @@
             }
         })();
     </script>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['"Baloo 2"', 'cursive'],
+                        sans: ['Nunito', 'system-ui', 'sans-serif'],
+                        mono: ['"Space Mono"', 'monospace'],
+                    },
+                    colors: {
+                        joy: {
+                            yellow: 'var(--c-yellow)',
+                            pink: 'var(--c-pink)',
+                            cyan: 'var(--c-cyan)',
+                            navy: 'var(--c-navy)',
+                            ink: 'var(--c-ink)',
+                            paper: 'var(--c-bg)',
+                            panel: 'var(--c-panel)',
+                            muted: 'var(--c-muted)',
+                            line: 'var(--c-line)',
+                            outline: 'var(--c-outline)',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --c-yellow: #FFD21E;
+            --c-pink: #FF2E97;
+            --c-cyan: #19C3DC;
+            --c-navy: #23264A;
+            --c-bg: #F4EDDC;
+            --c-panel: #FFFCF4;
+            --c-ink: #17181C;
+            --c-muted: #6E6A60;
+            --c-line: #D9D2BF;
+            --c-outline: #17181C;
+            --c-shadow: #17181C;
+        }
+        .dark {
+            --c-bg: #131417;
+            --c-panel: #1D1F25;
+            --c-ink: #F6F3E9;
+            --c-muted: #A5A199;
+            --c-line: #3A3D45;
+            --c-outline: #F6F3E9;
+            --c-shadow: #000000;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        .sticker {
+            border: 3px solid var(--c-outline);
+            box-shadow: 6px 6px 0 var(--c-shadow);
+        }
+        .sticker-sm {
+            border: 2px solid var(--c-outline);
+            box-shadow: 3px 3px 0 var(--c-shadow);
+        }
+        .sticker-hover { transition: transform .18s ease, box-shadow .18s ease; }
+        .sticker-hover:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 9px 9px 0 var(--c-shadow);
+        }
+
+        .wordmark {
+            color: var(--c-yellow);
+            -webkit-text-stroke: 1.5px var(--c-outline);
+        }
+        .outline-text {
+            color: transparent;
+            -webkit-text-stroke: 2px var(--c-yellow);
+        }
+
+        .dotgrid {
+            background-image: radial-gradient(color-mix(in srgb, var(--c-ink) 16%, transparent) 1.5px, transparent 1.5px);
+            background-size: 22px 22px;
+        }
+
+        .marquee { overflow: hidden; }
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marquee 28s linear infinite;
+        }
+        @keyframes marquee {
+            to { transform: translateX(-50%); }
+        }
+
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0;
+            height: 3px;
+            background: var(--c-pink);
+            transition: width .2s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        details summary::-webkit-details-marker { display: none; }
+        details[open] .faq-plus { transform: rotate(45deg); }
+        details[open] .faq-body { animation: faqOpen .25s ease; }
+        @keyframes faqOpen {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        select.selected {
+            border-color: var(--c-pink) !important;
+            box-shadow: 3px 3px 0 var(--c-shadow) !important;
+        }
+
+        input[type="checkbox"] { accent-color: var(--c-pink); }
+    </style>
+
     <script>
         function toggleDarkMode() {
             const html = document.documentElement;
             const isDark = html.classList.contains('dark');
-            
             if (isDark) {
                 html.classList.remove('dark');
                 localStorage.theme = 'light';
@@ -43,30 +161,42 @@
     </script>
 </head>
 
-<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300 font-['Inter']">
-    <!-- Navigation -->
-    <nav class="bg-white dark:bg-gray-800 shadow-lg fixed w-full z-50">
+<body class="bg-joy-paper text-joy-ink font-sans transition-colors duration-300">
+
+    <div class="marquee bg-joy-yellow text-[#17181C] border-b-[3px] border-joy-outline py-1.5">
+        <div class="marquee-track font-mono font-bold text-xs sm:text-sm uppercase tracking-widest">
+            <span class="px-4">Conserto de controles</span><span>✚</span>
+            <span class="px-4">Taubaté-SP</span><span>✚</span>
+            <span class="px-4">Envio para todo o Brasil</span><span>✚</span>
+            <span class="px-4">Garantia de 90 dias</span><span>✚</span>
+            <span class="px-4">Diagnóstico gratuito</span><span>✚</span>
+            <span class="px-4">Conserto de controles</span><span>✚</span>
+            <span class="px-4">Taubaté-SP</span><span>✚</span>
+            <span class="px-4">Envio para todo o Brasil</span><span>✚</span>
+            <span class="px-4">Garantia de 90 dias</span><span>✚</span>
+            <span class="px-4">Diagnóstico gratuito</span><span>✚</span>
+        </div>
+    </div>
+
+    <nav class="sticky top-0 z-50 bg-joy-paper backdrop-blur border-b-[3px] border-joy-outline">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
-                <div class="flex items-center">
-                    <a href="/" class="flex items-center">
-                        <img src="./images/joyfix-logo.jpg" alt="JoyFix Logo" class="h-10 w-auto mr-2 rounded-lg" />
-                        <span class="text-2xl font-bold text-blue-600 dark:text-blue-400">JoyFix</span>
-                    </a>
-                </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#loja" class="text-gray-700 dark:text-gray-300 hover:text-blue-600">Loja</a>
-                    <a href="#servicos" class="text-gray-700 dark:text-gray-300 hover:text-blue-600">Serviços</a>
-                    <a href="#orcamento" class="text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-700 dark:hover:text-blue-300">Orçamento</a>
-                    <a href="https://wa.me/5512992265665?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." target="_blank" class="text-gray-700 dark:text-gray-300 hover:text-blue-600">Contato</a>
-                    <a href="https://www.instagram.com/joyfix.taubate/" target="_blank"
-                        class="text-gray-700 dark:text-gray-300 hover:text-blue-600">Instagram</a>
-                    <button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
-                        <svg class="w-5 h-5 text-gray-800 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <a href="/" class="flex items-center gap-2">
+                    <img src="./images/joyfix-logo.jpg" alt="JoyFix Logo" class="h-10 w-auto rounded-lg sticker-sm" />
+                    <span class="font-display text-2xl font-extrabold wordmark lowercase">joyfix</span>
+                </a>
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="#loja" class="nav-link font-mono text-xs font-bold uppercase tracking-widest">Loja</a>
+                    <a href="#servicos" class="nav-link font-mono text-xs font-bold uppercase tracking-widest">Serviços</a>
+                    <a href="#orcamento" class="nav-link font-mono text-xs font-bold uppercase tracking-widest text-joy-pink">Orçamento</a>
+                    <a href="https://wa.me/5512992265665?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." target="_blank" class="nav-link font-mono text-xs font-bold uppercase tracking-widest">Contato</a>
+                    <a href="https://www.instagram.com/joyfix.taubate/" target="_blank" class="nav-link font-mono text-xs font-bold uppercase tracking-widest">Instagram</a>
+                    <button onclick="toggleDarkMode()" aria-label="Alternar tema" class="p-2 rounded-lg sticker-sm bg-joy-panel hover:-translate-y-0.5 transition-transform">
+                        <svg class="w-4 h-4 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
                         </svg>
-                        <svg class="w-5 h-5 text-gray-200 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        <svg class="w-4 h-4 text-joy-yellow hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
                         </svg>
                     </button>
                 </div>
@@ -74,152 +204,101 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="pt-32 pb-20 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center">
-
-                <h1 class="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-                    Conserto Profissional de Controles<br>
-                    <span class="text-blue-600">em Taubaté</span>
+    <!-- Hero -->
+    <section class="dotgrid relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 grid lg:grid-cols-2 gap-14 items-center">
+            <div>
+                <p class="font-mono text-xs sm:text-sm font-bold uppercase tracking-widest text-joy-pink mb-5">// bancada aberta em Taubaté-SP</p>
+                <h1 class="font-display font-extrabold text-5xl sm:text-6xl lg:text-7xl leading-[0.95] tracking-tight mb-6">
+                    Controle com
+                    <span class="inline-block -rotate-2 bg-joy-pink text-white px-3 sticker-sm">drift</span>,
+                    botão fantasma, bateria viciada?
                 </h1>
-                <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-                    Especialista em manutenção de controles de videogame e eletrônicos aviônicos com mais de 10 anos de
-                    experiência. Consertamos PlayStation, Nintendo e muito mais!
+                <p class="text-lg sm:text-xl font-semibold text-joy-muted max-w-xl mb-8">
+                    A JoyFix conserta PlayStation, Xbox, Nintendo e periféricos na bancada: peça boa,
+                    garantia de 90 dias e orçamento sem enrolação. Aqui em Taubaté ou pelos Correios, de qualquer lugar do Brasil.
                 </p>
-                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 border-2 border-blue-200 dark:border-blue-700 rounded-xl p-6 max-w-3xl mx-auto mb-8">
-                    <div class="flex items-center justify-center gap-3 mb-3">
-                        <svg class="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                        </svg>
-                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Atendemos Todo o Brasil!</h3>
-                    </div>
-                    <p class="text-lg text-gray-700 dark:text-gray-300 text-center">
-                        <span class="font-semibold text-blue-600 dark:text-blue-400">Envie seu controle pelos Correios</span> de qualquer lugar do Brasil.<br>
-                        Fazemos o conserto e devolvemos com segurança para você!
-                    </p>
-                </div>
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
-                    <a href="https://www.instagram.com/joyfix.taubate/" target="_blank"
-                        class="w-full sm:w-auto bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all flex items-center justify-center hover:opacity-90">
-                        <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                        </svg>
-                        Siga no Instagram
+                <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                    <a href="https://wa.me/5512992265665?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." target="_blank"
+                        class="sticker sticker-hover bg-joy-yellow text-[#17181C] font-display font-extrabold text-lg px-7 py-4 rounded-xl flex items-center justify-center gap-2">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.031-.967-.273-.099-.471-.148-.67.15-.198.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.447-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.007-.372-.009-.571-.009-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.363.71.306 1.263.489 1.694.626.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.288.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 6.617h-.001a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.455 4.436-9.89 9.892-9.89 2.64 0 5.122 1.03 6.988 2.898a9.825 6.994 0 012.896 6.994c-.003 5.455-4.438 9.89-9.896 9.89m8.413-18.304A11.815 11.815 0 0012.05.003C5.495.003.002 5.495 0 12.053c0 2.125.557 4.199 1.615 6.032L.057 23.953a1 1 0 001.237 1.237l5.92-1.552a11.882 11.882 0 005.683 1.448h.005c6.555 0 11.848-5.492 11.85-12.048a11.82 11.82 0 00-3.473-8.591"/></svg>
+                        Chamar no WhatsApp
                     </a>
-                    <a href="https://wa.me/5512992265665" target="_blank"
-                        class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all flex items-center justify-center">
-                        <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                        </svg>
-                        Agendar Serviço
+                    <a href="#orcamento"
+                        class="sticker sticker-hover bg-joy-panel font-display font-extrabold text-lg px-7 py-4 rounded-xl flex items-center justify-center gap-2">
+                        Calcular orçamento
                     </a>
                 </div>
-                <div class="flex justify-center">
-                    <a href="#loja"
-                        class="w-full sm:w-auto bg-slate-200 hover:bg-slate-300 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-100 px-8 py-4 rounded-lg text-lg font-semibold transition-all flex items-center justify-center shadow">
-                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                        </svg>
-                        Loja
-                    </a>
-                </div>
+                <p class="font-mono text-xs uppercase tracking-widest text-joy-muted">diagnóstico gratuito · você só paga se aprovar o conserto</p>
             </div>
-    </section>
 
-    <!-- Trust Badges Section -->
-    <section class="py-16 bg-white dark:bg-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="text-center">
-                    <div class="flex justify-center mb-3">
-                        <div class="bg-blue-100 dark:bg-blue-900 p-4 rounded-full">
-                            <svg class="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">10+</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Anos de Experiência</p>
+            <div class="relative mx-auto w-full max-w-md lg:max-w-none">
+                <img src="./images/IMG_20250607_143112.jpg" alt="Controle Xbox personalizado na bancada"
+                    class="sticker rounded-2xl rotate-2 w-full object-cover aspect-square bg-white" />
+                <img src="./images/IMG_20250606_122658.jpg" alt="Controle PlayStation pronto após conserto"
+                    class="sticker rounded-2xl -rotate-3 absolute -bottom-10 -left-6 w-1/2 object-cover aspect-square bg-white hidden sm:block" />
+                <div class="sticker-sm rounded-full bg-joy-cyan text-[#17181C] font-display font-extrabold text-sm text-center leading-tight px-5 py-4 absolute -top-6 -right-3 rotate-6">
+                    90 DIAS<br>DE GARANTIA
                 </div>
-                <div class="text-center">
-                    <div class="flex justify-center mb-3">
-                        <div class="bg-green-100 dark:bg-green-900 p-4 rounded-full">
-                            <svg class="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">98%</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Satisfação</p>
-                </div>
-                <div class="text-center">
-                    <div class="flex justify-center mb-3">
-                        <div class="bg-purple-100 dark:bg-purple-900 p-4 rounded-full">
-                            <svg class="w-8 h-8 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">5000+</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Reparos Realizados</p>
-                </div>
-                <div class="text-center">
-                    <div class="flex justify-center mb-3">
-                        <div class="bg-orange-100 dark:bg-orange-900 p-4 rounded-full">
-                            <svg class="w-8 h-8 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Todo BR</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Atendimento Nacional</p>
+                <div class="sticker-sm rounded-lg bg-joy-panel font-mono font-bold text-xs uppercase tracking-widest px-3 py-2 absolute -bottom-6 right-6 -rotate-3">
+                    drift zero ✓
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Orçamento Section -->
-    <section id="orcamento" class="py-16 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-8">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3">Faça seu Orçamento</h2>
-                <p class="text-lg text-gray-600 dark:text-gray-300">Configure seu conserto e receba um orçamento instantâneo</p>
+    <!-- Stats tape -->
+    <section class="border-y-[3px] border-joy-outline bg-joy-panel">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 lg:grid-cols-4 divide-x-[3px] divide-joy-line">
+            <div class="py-8 px-4 text-center">
+                <p class="font-display font-extrabold text-4xl text-joy-pink">+10</p>
+                <p class="font-mono text-[11px] font-bold uppercase tracking-widest text-joy-muted mt-1">anos de bancada</p>
             </div>
-            
-            <div class="calculator-container bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700">
-                <form id="orcamentoForm" class="space-y-6">
-                    <!-- Controller Selection -->
+            <div class="py-8 px-4 text-center">
+                <p class="font-display font-extrabold text-4xl text-joy-cyan">5.000+</p>
+                <p class="font-mono text-[11px] font-bold uppercase tracking-widest text-joy-muted mt-1">controles consertados</p>
+            </div>
+            <div class="py-8 px-4 text-center">
+                <p class="font-display font-extrabold text-4xl text-joy-yellow wordmark">90</p>
+                <p class="font-mono text-[11px] font-bold uppercase tracking-widest text-joy-muted mt-1">dias de garantia</p>
+            </div>
+            <div class="py-8 px-4 text-center">
+                <p class="font-display font-extrabold text-4xl">BR</p>
+                <p class="font-mono text-[11px] font-bold uppercase tracking-widest text-joy-muted mt-1">envio para todo o país</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Orçamento -->
+    <section id="orcamento" class="py-20 dotgrid">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <p class="font-mono text-xs font-bold uppercase tracking-widest text-joy-cyan mb-3">[ 01 // orçamento ]</p>
+                <h2 class="font-display font-extrabold text-4xl sm:text-5xl tracking-tight">Monte seu conserto e veja o preço na hora</h2>
+            </div>
+
+            <div class="sticker rounded-2xl bg-joy-panel p-6 sm:p-10">
+                <form id="orcamentoForm" class="space-y-8">
                     <div id="controllers-container" class="space-y-4">
-                        <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center justify-between gap-4 flex-wrap">
                             <div>
-                                <h5 class="text-xl font-semibold text-gray-900 dark:text-white flex items-center">
-                                    <svg class="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                    </svg>
+                                <h5 class="font-display font-extrabold text-2xl flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-joy-pink inline-block"></span>
                                     Controles
                                 </h5>
-                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Selecione os modelos que deseja consertar</p>
+                                <p class="font-mono text-xs uppercase tracking-widest text-joy-muted mt-1">selecione os modelos que deseja consertar</p>
                             </div>
-                            <button type="button" id="add-controller" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all shadow-md hover:shadow-lg transform hover:scale-105">
+                            <button type="button" id="add-controller" class="sticker-sm sticker-hover bg-joy-yellow text-[#17181C] font-display font-extrabold px-4 py-2 rounded-lg flex items-center gap-2">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
                                 </svg>
-                                <span class="font-medium">Adicionar</span>
+                                Adicionar
                             </button>
                         </div>
-                        
-                        <!-- Controller Template (hidden) -->
+
                         <div id="controller-template" class="hidden">
-                            <div class="controller-item flex items-center space-x-3 p-4 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-600 rounded-xl border border-gray-200 dark:border-gray-600 hover:shadow-md transition-all">
-                                <select class="flex-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white h-10 px-3 py-2 appearance-none bg-white dark:bg-gray-600 bg-[url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")] bg-[right_0.5rem_center] bg-no-repeat pr-8" name="modelo[]" required>
+                            <div class="controller-item flex items-center space-x-3 p-4 bg-joy-paper rounded-xl border-2 border-joy-outline">
+                                <select class="flex-1 rounded-lg border-2 border-joy-outline bg-joy-panel text-joy-ink font-semibold h-11 px-3 py-2 appearance-none bg-[url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23FF2E97' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 8l4 4 4-4'/%3e%3c/svg%3e\")] bg-[right_0.6rem_center] bg-no-repeat pr-9" name="modelo[]" required>
                                     <option value="" selected disabled>Selecione o modelo</option>
                                     <option value="PS5">PlayStation 5</option>
                                     <option value="PS4">PlayStation 4</option>
@@ -227,17 +306,16 @@
                                     <option value="XboxSeries">Xbox Series S/X</option>
                                     <option value="Outro">Outro</option>
                                 </select>
-                                <button type="button" class="remove-controller text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300" title="Remover">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <button type="button" class="remove-controller text-joy-pink hover:scale-110 transition-transform p-1" title="Remover">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
                                     </svg>
                                 </button>
                             </div>
                         </div>
-                        
-                        <!-- Initial Controller -->
-                        <div class="controller-item flex items-center space-x-3 p-4 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-600 rounded-xl border border-gray-200 dark:border-gray-600 hover:shadow-md transition-all">
-                            <select class="flex-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white h-10 px-3 py-2 appearance-none bg-white dark:bg-gray-600 bg-[url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e\")] bg-[right_0.5rem_center] bg-no-repeat pr-8" name="modelo[]" required>
+
+                        <div class="controller-item flex items-center space-x-3 p-4 bg-joy-paper rounded-xl border-2 border-joy-outline">
+                            <select class="flex-1 rounded-lg border-2 border-joy-outline bg-joy-panel text-joy-ink font-semibold h-11 px-3 py-2 appearance-none bg-[url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23FF2E97' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 8l4 4 4-4'/%3e%3c/svg%3e\")] bg-[right_0.6rem_center] bg-no-repeat pr-9" name="modelo[]" required>
                                 <option value="" selected disabled>Selecione o modelo</option>
                                 <option value="PS5">PlayStation 5</option>
                                 <option value="PS4">PlayStation 4</option>
@@ -245,380 +323,327 @@
                                 <option value="XboxSeries">Xbox Series S/X</option>
                                 <option value="Outro">Outro</option>
                             </select>
-                            <button type="button" class="remove-controller text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300" title="Remover">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <button type="button" class="remove-controller text-joy-pink hover:scale-110 transition-transform p-1" title="Remover">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
                                 </svg>
                             </button>
                         </div>
                     </div>
 
-                    <!-- Peças -->
-                    <div class="space-y-4 pt-6 border-t border-gray-200 dark:border-gray-700">
+                    <div class="space-y-4 pt-8 border-t-[3px] border-dashed border-joy-line">
                         <div class="mb-4">
-                            <h5 class="text-xl font-semibold text-gray-900 dark:text-white flex items-center">
-                                <svg class="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
-                                </svg>
+                            <h5 class="font-display font-extrabold text-2xl flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-joy-cyan inline-block"></span>
                                 Peças
                             </h5>
-                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Selecione as peças necessárias</p>
+                            <p class="font-mono text-xs uppercase tracking-widest text-joy-muted mt-1">selecione as peças necessárias</p>
                         </div>
-                       
-                        
-                        <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
+
+                        <div class="part-row flex items-center justify-between gap-4 p-4 bg-joy-paper rounded-xl border-2 border-joy-line">
                             <div class="flex items-center">
-                                <input type="checkbox" id="analogicoOriginal" class="h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer">
-                                <label for="analogicoOriginal" class="ml-3 text-gray-700 dark:text-gray-300 font-medium cursor-pointer">
-                                    Analógico Original <span class="text-blue-600 dark:text-blue-400 font-semibold">R$ 20,00</span> <span class="text-sm text-gray-500">(cada)</span>
+                                <input type="checkbox" id="analogicoOriginal" class="h-5 w-5 rounded border-2 border-joy-outline cursor-pointer">
+                                <label for="analogicoOriginal" class="ml-3 font-bold cursor-pointer">
+                                    Analógico Original <span class="font-mono text-joy-pink font-bold">R$ 20,00</span> <span class="font-mono text-xs text-joy-muted">(cada)</span>
                                 </label>
                             </div>
-                            <div class="flex items-center shadow-sm">
-                                <button type="button" class="number-btn w-10 h-10 flex items-center justify-center bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-l-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors font-bold text-gray-700 dark:text-gray-300" data-target="analogicoOriginal" data-action="decrement">−</button>
-                                <input type="number" class="w-16 text-center border-t border-b border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 dark:text-white h-10 font-semibold text-lg" min="0" value="0" data-target="analogicoOriginal" inputmode="numeric" pattern="[0-9]*" style="-moz-appearance: textfield; appearance: textfield; padding: 0; text-align: center;">
-                                <button type="button" class="number-btn w-10 h-10 flex items-center justify-center bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-r-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors font-bold text-gray-700 dark:text-gray-300" data-target="analogicoOriginal" data-action="increment">+</button>
+                            <div class="flex items-center">
+                                <button type="button" class="number-btn w-10 h-10 flex items-center justify-center bg-joy-panel border-2 border-joy-outline rounded-l-lg hover:bg-joy-yellow hover:text-[#17181C] transition-colors font-bold" data-target="analogicoOriginal" data-action="decrement">−</button>
+                                <input type="number" class="w-14 text-center border-t-2 border-b-2 border-joy-outline bg-joy-panel text-joy-ink h-10 font-mono font-bold" min="0" value="0" data-target="analogicoOriginal" inputmode="numeric" pattern="[0-9]*" style="-moz-appearance: textfield; appearance: textfield; padding: 0; text-align: center;">
+                                <button type="button" class="number-btn w-10 h-10 flex items-center justify-center bg-joy-panel border-2 border-joy-outline rounded-r-lg hover:bg-joy-yellow hover:text-[#17181C] transition-colors font-bold" data-target="analogicoOriginal" data-action="increment">+</button>
                             </div>
                         </div>
-                        
-                        <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
+
+                        <div class="part-row flex items-center justify-between gap-4 p-4 bg-joy-paper rounded-xl border-2 border-joy-line">
                             <div class="flex items-center">
-                                <input type="checkbox" id="analogicoMagnetico" class="h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer">
-                                <label for="analogicoMagnetico" class="ml-3 text-gray-700 dark:text-gray-300 font-medium cursor-pointer">
-                                    Analógico Magnético <span class="text-blue-600 dark:text-blue-400 font-semibold">R$ 35,00</span> <span class="text-sm text-gray-500">(cada)</span>
+                                <input type="checkbox" id="analogicoMagnetico" class="h-5 w-5 rounded border-2 border-joy-outline cursor-pointer">
+                                <label for="analogicoMagnetico" class="ml-3 font-bold cursor-pointer">
+                                    Analógico Magnético <span class="font-mono text-joy-pink font-bold">R$ 35,00</span> <span class="font-mono text-xs text-joy-muted">(cada)</span>
                                 </label>
                             </div>
-                            <div class="flex items-center shadow-sm">
-                                <button type="button" class="number-btn w-10 h-10 flex items-center justify-center bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-l-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors font-bold text-gray-700 dark:text-gray-300" data-target="analogicoMagnetico" data-action="decrement">−</button>
-                                <input type="number" class="w-16 text-center border-t border-b border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 dark:text-white h-10 font-semibold text-lg" value="0" data-target="analogicoMagnetico" inputmode="numeric" pattern="[0-9]*" style="-moz-appearance: textfield; appearance: textfield; padding: 0; text-align: center;">
-                                <button type="button" class="number-btn w-10 h-10 flex items-center justify-center bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-r-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors font-bold text-gray-700 dark:text-gray-300" data-target="analogicoMagnetico" data-action="increment">+</button>
+                            <div class="flex items-center">
+                                <button type="button" class="number-btn w-10 h-10 flex items-center justify-center bg-joy-panel border-2 border-joy-outline rounded-l-lg hover:bg-joy-yellow hover:text-[#17181C] transition-colors font-bold" data-target="analogicoMagnetico" data-action="decrement">−</button>
+                                <input type="number" class="w-14 text-center border-t-2 border-b-2 border-joy-outline bg-joy-panel text-joy-ink h-10 font-mono font-bold" value="0" data-target="analogicoMagnetico" inputmode="numeric" pattern="[0-9]*" style="-moz-appearance: textfield; appearance: textfield; padding: 0; text-align: center;">
+                                <button type="button" class="number-btn w-10 h-10 flex items-center justify-center bg-joy-panel border-2 border-joy-outline rounded-r-lg hover:bg-joy-yellow hover:text-[#17181C] transition-colors font-bold" data-target="analogicoMagnetico" data-action="increment">+</button>
                             </div>
                         </div>
-                        
-                        <div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
+
+                        <div class="part-row p-4 bg-joy-paper rounded-xl border-2 border-joy-line">
                             <div class="flex items-center">
-                                <input type="checkbox" id="membranaBotoes" class="h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer">
-                                <label for="membranaBotoes" class="ml-3 text-gray-700 dark:text-gray-300 font-medium cursor-pointer">
-                                    Demais Botões <span class="text-blue-600 dark:text-blue-400 font-semibold">R$ 25,00</span>
+                                <input type="checkbox" id="membranaBotoes" class="h-5 w-5 rounded border-2 border-joy-outline cursor-pointer">
+                                <label for="membranaBotoes" class="ml-3 font-bold cursor-pointer">
+                                    Demais Botões <span class="font-mono text-joy-pink font-bold">R$ 25,00</span>
                                 </label>
                             </div>
-                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-2 ml-8 italic">
-                                * O valor pode variar dependendo da peça. Consulte-nos para mais informações.
-                            </p>
+                            <p class="font-mono text-xs text-joy-muted mt-2 ml-8">* o valor pode variar dependendo da peça. consulte-nos.</p>
                         </div>
-                        
-                        <div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
+
+                        <div class="part-row p-4 bg-joy-paper rounded-xl border-2 border-joy-line">
                             <div class="flex items-center">
-                                <input type="checkbox" id="bateria" class="h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer">
-                                <label for="bateria" class="ml-3 text-gray-700 dark:text-gray-300 font-medium cursor-pointer">
-                                    Bateria <span class="text-blue-600 dark:text-blue-400 font-semibold">R$ 40,00</span>
+                                <input type="checkbox" id="bateria" class="h-5 w-5 rounded border-2 border-joy-outline cursor-pointer">
+                                <label for="bateria" class="ml-3 font-bold cursor-pointer">
+                                    Bateria <span class="font-mono text-joy-pink font-bold">R$ 40,00</span>
                                 </label>
                             </div>
-                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-2 ml-8 italic">
-                                * Xbox One e Series S/X usam pilhas AA (não possuem bateria interna)
-                            </p>
+                            <p class="font-mono text-xs text-joy-muted mt-2 ml-8">* Xbox One e Series S/X usam pilhas AA (não possuem bateria interna)</p>
                         </div>
                     </div>
 
-                    <!-- Mão de Obra -->
-                    <div class="pt-6 border-t border-gray-200 dark:border-gray-700">
-                        <div class="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
-                            <div class="flex items-center justify-between mb-2">
+                    <div class="pt-8 border-t-[3px] border-dashed border-joy-line">
+                        <div class="p-5 bg-joy-navy text-white rounded-xl sticker-sm">
+                            <div class="flex items-center justify-between gap-4 mb-2 flex-wrap">
                                 <div class="flex items-center">
-                                    <svg class="w-6 h-6 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-6 h-6 text-joy-cyan mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                     </svg>
-                                    <label class="text-gray-700 dark:text-gray-300 font-semibold">Mão de Obra Básica</label>
+                                    <label class="font-bold">Mão de Obra Básica</label>
                                 </div>
                                 <div class="text-right">
-                                    <span class="font-bold text-xl text-blue-600 dark:text-blue-400">R$ 60,00</span>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">(R$ 70 para PS5)</p>
+                                    <span id="labor-price" class="font-mono font-bold text-xl text-joy-yellow">R$ 60,00</span>
+                                    <p class="font-mono text-xs text-white/70 mt-1">(R$ 70 para PS5)</p>
                                 </div>
                             </div>
-                            <p class="text-xs text-gray-600 dark:text-gray-400 ml-9 italic">
-                                Inclui: limpeza, testes e diagnóstico detalhado
-                            </p>
+                            <p class="font-mono text-xs text-white/70 ml-9">inclui: limpeza, testes e diagnóstico detalhado</p>
                         </div>
                     </div>
 
-                    <div class="mt-4 p-4 bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 rounded-r-lg">
-                        <div class="flex items-start">
-                            <svg class="w-5 h-5 text-yellow-600 dark:text-yellow-400 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                    <div class="p-4 bg-[rgba(255,210,30,0.15)] border-l-4 border-joy-yellow rounded-r-lg">
+                        <p class="text-sm font-semibold">
+                            <strong class="font-display font-extrabold uppercase">Observação:</strong> os valores e a disponibilidade das peças podem variar. Entre em contato para confirmar os valores atualizados.
+                        </p>
+                    </div>
+
+                    <div class="bg-joy-navy text-white p-6 rounded-2xl sticker">
+                        <span class="font-mono text-xs uppercase tracking-widest text-white/70">total do orçamento</span>
+                        <div class="flex items-center mt-1 gap-3">
+                            <svg class="w-7 h-7 text-joy-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
-                            <p class="text-sm text-gray-700 dark:text-gray-300">
-                                <strong class="font-semibold text-yellow-800 dark:text-yellow-400">Observação:</strong> Os valores e a disponibilidade das peças podem variar. Entre em contato conosco para consultar os valores e a disponibilidade atualizados.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    
-
-                    <!-- Total -->
-                    <div class="bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-700 dark:to-blue-800 p-6 rounded-2xl shadow-xl">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <span class="text-sm font-medium text-blue-100 uppercase tracking-wide">Total do Orçamento</span>
-                                <div class="flex items-center mt-1">
-                                    <svg class="w-6 h-6 text-white mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                    </svg>
-                                    <span id="total-orcamento" class="text-4xl font-bold text-white">R$ 60,00</span>
-                                </div>
-                            </div>
+                            <span id="total-orcamento" class="font-mono text-4xl sm:text-5xl font-bold text-joy-yellow">R$ 60,00</span>
                         </div>
                     </div>
 
-                    <!-- Botão WhatsApp -->
-                    <button type="button" id="enviarWhatsApp" class="w-full flex items-center justify-center px-8 py-4 border border-transparent rounded-xl shadow-lg text-lg font-bold text-white bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 dark:focus:ring-green-800 transform hover:scale-105 transition-all duration-200">
-                        <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/>
-                        </svg>
-                        Enviar Orçamento por WhatsApp
+                    <button type="button" id="enviarWhatsApp" class="w-full sticker sticker-hover rounded-xl font-display font-extrabold text-lg text-white bg-[#25D366] px-8 py-4 flex items-center justify-center gap-3">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.031-.967-.273-.099-.471-.148-.67.15-.198.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.447-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.007-.372-.009-.571-.009-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.363.71.306 1.263.489 1.694.626.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.288.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 6.617h-.001a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.455 4.436-9.89 9.892-9.89 2.64 0 5.122 1.03 6.988 2.898a9.825 6.994 0 012.896 6.994c-.003 5.455-4.438 9.89-9.896 9.89m8.413-18.304A11.815 11.815 0 0012.05.003C5.495.003.002 5.495 0 12.053c0 2.125.557 4.199 1.615 6.032L.057 23.953a1 1 0 001.237 1.237l5.92-1.552a11.882 11.882 0 005.683 1.448h.005c6.555 0 11.848-5.492 11.85-12.048a11.82 11.82 0 00-3.473-8.591"/></svg>
+                        Enviar orçamento por WhatsApp
                     </button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- Mail Service Section -->
-    <section class="py-20 bg-gradient-to-br from-blue-600 to-indigo-700 text-white">
+    <!-- Correios -->
+    <section class="py-20 bg-joy-navy text-white border-y-[3px] border-joy-outline">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Como Funciona o Envio pelos Correios?</h2>
-                <p class="text-xl text-blue-100">Simples, rápido e seguro!</p>
+            <div class="mb-12 max-w-2xl">
+                <p class="font-mono text-xs font-bold uppercase tracking-widest text-joy-cyan mb-3">[ 02 // pelos correios ]</p>
+                <h2 class="font-display font-extrabold text-4xl sm:text-5xl tracking-tight mb-4">Longe de Taubaté? Manda pelos Correios.</h2>
+                <p class="text-lg font-semibold text-white/70">Quatro passos entre o seu controle driftando e ele voltando zerado pra sua casa.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="text-center">
-                    <div class="bg-white/10 backdrop-blur-sm rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4 border-2 border-white/30">
-                        <span class="text-4xl font-bold">1</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Entre em Contato</h3>
-                    <p class="text-blue-100">Fale conosco pelo WhatsApp e descreva o problema do seu controle</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="sticker-sm rounded-2xl bg-white/5 p-6 hover:bg-white/10 transition-colors">
+                    <span class="sticker-sm rounded-full w-12 h-12 flex items-center justify-center bg-joy-yellow text-[#17181C] font-display font-extrabold text-xl mb-4">1</span>
+                    <h3 class="font-display font-extrabold text-xl mb-2">Chama no WhatsApp</h3>
+                    <p class="font-semibold text-white/70 text-sm">Conta o que está acontecendo com o controle. A gente já adianta o provável reparo.</p>
                 </div>
-                <div class="text-center">
-                    <div class="bg-white/10 backdrop-blur-sm rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4 border-2 border-white/30">
-                        <span class="text-4xl font-bold">2</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Envie pelos Correios</h3>
-                    <p class="text-blue-100">Embale bem seu controle e envie para nosso endereço em Taubaté-SP</p>
+                <div class="sticker-sm rounded-2xl bg-white/5 p-6 hover:bg-white/10 transition-colors">
+                    <span class="sticker-sm rounded-full w-12 h-12 flex items-center justify-center bg-joy-pink text-white font-display font-extrabold text-xl mb-4">2</span>
+                    <h3 class="font-display font-extrabold text-xl mb-2">Envia pra gente</h3>
+                    <p class="font-semibold text-white/70 text-sm">Embale com carinho e poste nos Correios para o nosso endereço em Taubaté-SP.</p>
                 </div>
-                <div class="text-center">
-                    <div class="bg-white/10 backdrop-blur-sm rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4 border-2 border-white/30">
-                        <span class="text-4xl font-bold">3</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Consertamos</h3>
-                    <p class="text-blue-100">Fazemos o diagnóstico, orçamento e reparo com peças de qualidade</p>
+                <div class="sticker-sm rounded-2xl bg-white/5 p-6 hover:bg-white/10 transition-colors">
+                    <span class="sticker-sm rounded-full w-12 h-12 flex items-center justify-center bg-joy-cyan text-[#17181C] font-display font-extrabold text-xl mb-4">3</span>
+                    <h3 class="font-display font-extrabold text-xl mb-2">A bancada resolve</h3>
+                    <p class="font-semibold text-white/70 text-sm">Diagnóstico, orçamento aprovado e reparo com peça de qualidade.</p>
                 </div>
-                <div class="text-center">
-                    <div class="bg-white/10 backdrop-blur-sm rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4 border-2 border-white/30">
-                        <span class="text-4xl font-bold">4</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Devolvemos</h3>
-                    <p class="text-blue-100">Enviamos de volta para você com garantia e rastreamento</p>
+                <div class="sticker-sm rounded-2xl bg-white/5 p-6 hover:bg-white/10 transition-colors">
+                    <span class="sticker-sm rounded-full w-12 h-12 flex items-center justify-center bg-joy-yellow text-[#17181C] font-display font-extrabold text-xl mb-4">4</span>
+                    <h3 class="font-display font-extrabold text-xl mb-2">Volta pra sua casa</h3>
+                    <p class="font-semibold text-white/70 text-sm">Devolvemos testado, com garantia de 90 dias e código de rastreio.</p>
                 </div>
             </div>
-            <div class="mt-12 bg-white/10 backdrop-blur-sm rounded-2xl p-8 border-2 border-white/30">
-                <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-                    <div class="flex items-center gap-4">
-                        <svg class="w-12 h-12 text-yellow-300" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                        </svg>
-                        <div>
-                            <h4 class="text-2xl font-bold">Garantia de 90 dias</h4>
-                            <p class="text-blue-100">em todos os serviços realizados</p>
-                        </div>
+            <div class="mt-12 sticker rounded-2xl bg-joy-yellow text-[#17181C] p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-4">
+                    <svg class="w-12 h-12 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                    <div>
+                        <h4 class="font-display font-extrabold text-2xl">Garantia de 90 dias</h4>
+                        <p class="font-semibold">em todos os serviços realizados na bancada</p>
                     </div>
-                    <a href="https://wa.me/5512992265665?text=Olá!%20Gostaria%20de%20enviar%20meu%20controle%20pelos%20Correios." target="_blank" class="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-bold hover:bg-blue-50 transition-all flex items-center gap-2 shadow-lg">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                        </svg>
-                        Solicitar Envio
-                    </a>
                 </div>
+                <a href="https://wa.me/5512992265665?text=Olá!%20Gostaria%20de%20enviar%20meu%20controle%20pelos%20Correios." target="_blank" class="sticker-sm sticker-hover bg-[#17181C] text-joy-yellow font-display font-extrabold text-lg px-7 py-4 rounded-xl whitespace-nowrap">
+                    Quero enviar o meu
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="servicos" class="py-20 bg-gray-100 dark:bg-gray-800">
+    <!-- Serviços -->
+    <section id="servicos" class="py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center text-gray-900 dark:text-white mb-12">Nossos Serviços</h2>
+            <div class="mb-12 max-w-2xl">
+                <p class="font-mono text-xs font-bold uppercase tracking-widest text-joy-pink mb-3">[ 03 // serviços ]</p>
+                <h2 class="font-display font-extrabold text-4xl sm:text-5xl tracking-tight">O que passa pela nossa bancada</h2>
+            </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div
-                    class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg hover:transform hover:scale-105 transition-all">
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">PlayStation</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Conserto de todos os modelos: DualShock, DualSense e DualSense Edge
-                        reparo de analógicos, botões e bateria.</p>
+                <div class="sticker sticker-hover rounded-2xl bg-joy-panel p-7 relative">
+                    <span class="absolute top-5 right-6 font-mono font-bold text-xs text-joy-pink">/01</span>
+                    <h3 class="font-display font-extrabold text-2xl mb-3">PlayStation</h3>
+                    <p class="font-semibold text-joy-muted">DualShock, DualSense e DualSense Edge: analógicos, botões, bateria, conector de carga e aquele drift insistente.</p>
                 </div>
-                <div
-                    class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg hover:transform hover:scale-105 transition-all">
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Nintendo</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Especialista em Joy-Cons, Pro Controller e controles
-                        clássicos. Reparo de drift e problemas com botões e bateria.</p>
+                <div class="sticker sticker-hover rounded-2xl bg-joy-panel p-7 relative">
+                    <span class="absolute top-5 right-6 font-mono font-bold text-xs text-joy-cyan">/02</span>
+                    <h3 class="font-display font-extrabold text-2xl mb-3">Nintendo</h3>
+                    <p class="font-semibold text-joy-muted">Joy-Cons, Pro Controller e clássicos. Reparo de drift, botões travando e troca de bateria.</p>
                 </div>
-                <div
-                    class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg hover:transform hover:scale-105 transition-all">
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Xbox</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Manutenção de controles Xbox One, Series X|S, Elite e
-                        mais. Reparo de botões, analógicos e problemas de energia.</p>
+                <div class="sticker sticker-hover rounded-2xl bg-joy-panel p-7 relative">
+                    <span class="absolute top-5 right-6 font-mono font-bold text-xs text-joy-yellow wordmark">/03</span>
+                    <h3 class="font-display font-extrabold text-2xl mb-3">Xbox</h3>
+                    <p class="font-semibold text-joy-muted">Xbox One, Series X|S e Elite: botões, analógicos, gatilhos e problemas de energia.</p>
                 </div>
-                <div
-                    class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg hover:transform hover:scale-105 transition-all">
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Periféricos de PC Gamer</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Manutenção de teclados, mouses, headsets e outros
-                        periféricos.</p>
+                <div class="sticker sticker-hover rounded-2xl bg-joy-panel p-7 relative">
+                    <span class="absolute top-5 right-6 font-mono font-bold text-xs text-joy-pink">/04</span>
+                    <h3 class="font-display font-extrabold text-2xl mb-3">Periféricos de PC Gamer</h3>
+                    <p class="font-semibold text-joy-muted">Teclados, mouses, headsets e outros periféricos que merecem voltar pro setup.</p>
                 </div>
-                <div
-                    class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg hover:transform hover:scale-105 transition-all">
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Steam Deck, PCs Portáteis e Óculos
-                        VR</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Manutenção e reparo de equipamentos de gaming portáteis
-                        e óculos VR.</p>
+                <div class="sticker sticker-hover rounded-2xl bg-joy-panel p-7 relative">
+                    <span class="absolute top-5 right-6 font-mono font-bold text-xs text-joy-cyan">/05</span>
+                    <h3 class="font-display font-extrabold text-2xl mb-3">Portáteis e VR</h3>
+                    <p class="font-semibold text-joy-muted">Steam Deck, PCs portáteis e óculos de realidade virtual: manutenção e reparo especializado.</p>
                 </div>
-                <div
-                    class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg hover:transform hover:scale-105 transition-all">
-                    <div class="flex items-center justify-center w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg mb-4">
-                        <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Envio pelos Correios</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Atendemos todo o Brasil! Envie seu controle pelos Correios e receba de volta consertado com garantia.</p>
+                <div class="sticker sticker-hover rounded-2xl bg-joy-yellow text-[#17181C] p-7 relative">
+                    <span class="absolute top-5 right-6 font-mono font-bold text-xs">/06</span>
+                    <h3 class="font-display font-extrabold text-2xl mb-3">Envio pelos Correios</h3>
+                    <p class="font-semibold">Atendemos todo o Brasil: envie seu controle e receba de volta consertado, com garantia.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section class="py-20 bg-white dark:bg-gray-900">
+    <!-- FAQ -->
+    <section class="py-20 bg-joy-panel border-y-[3px] border-joy-outline">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center text-gray-900 dark:text-white mb-12">Perguntas Frequentes</h2>
+            <div class="mb-12">
+                <p class="font-mono text-xs font-bold uppercase tracking-widest text-joy-cyan mb-3">[ 04 // dúvidas ]</p>
+                <h2 class="font-display font-extrabold text-4xl sm:text-5xl tracking-tight">Perguntas que sempre chegam no WhatsApp</h2>
+            </div>
             <div class="space-y-4">
-                <details class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 cursor-pointer group">
-                    <summary class="font-bold text-lg text-gray-900 dark:text-white list-none flex items-center justify-between">
+                <details class="group rounded-xl border-2 border-dashed border-joy-line p-6 open:border-joy-outline open:bg-joy-paper transition-colors">
+                    <summary class="font-display font-extrabold text-lg flex items-center justify-between gap-4 cursor-pointer list-none">
                         <span>Quanto tempo demora o conserto?</span>
-                        <svg class="w-5 h-5 text-blue-600 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
+                        <span class="faq-plus font-display font-extrabold text-2xl text-joy-pink transition-transform">+</span>
                     </summary>
-                    <p class="mt-4 text-gray-600 dark:text-gray-300">O tempo médio de reparo é de 3 a 7 dias úteis após o recebimento do controle. Para envios pelos Correios, considere também o tempo de transporte (ida e volta).</p>
+                    <div class="faq-body mt-4 font-semibold text-joy-muted">O tempo médio de reparo é de 3 a 7 dias úteis após o recebimento do controle. Para envios pelos Correios, considere também o tempo de transporte (ida e volta).</div>
                 </details>
-                
-                <details class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 cursor-pointer group">
-                    <summary class="font-bold text-lg text-gray-900 dark:text-white list-none flex items-center justify-between">
+
+                <details class="group rounded-xl border-2 border-dashed border-joy-line p-6 open:border-joy-outline open:bg-joy-paper transition-colors">
+                    <summary class="font-display font-extrabold text-lg flex items-center justify-between gap-4 cursor-pointer list-none">
                         <span>Qual o custo do envio pelos Correios?</span>
-                        <svg class="w-5 h-5 text-blue-600 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
+                        <span class="faq-plus font-display font-extrabold text-2xl text-joy-pink transition-transform">+</span>
                     </summary>
-                    <p class="mt-4 text-gray-600 dark:text-gray-300">O cliente é responsável pelo envio do controle até nossa loja. Após o conserto, nós enviamos de volta com frete por nossa conta ou você pode escolher retirar pessoalmente. Entre em contato para mais detalhes.</p>
+                    <div class="faq-body mt-4 font-semibold text-joy-muted">O cliente é responsável pelo envio do controle até nossa loja. Após o conserto, nós enviamos de volta com frete por nossa conta ou você pode escolher retirar pessoalmente. Entre em contato para mais detalhes.</div>
                 </details>
-                
-                <details class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 cursor-pointer group">
-                    <summary class="font-bold text-lg text-gray-900 dark:text-white list-none flex items-center justify-between">
+
+                <details class="group rounded-xl border-2 border-dashed border-joy-line p-6 open:border-joy-outline open:bg-joy-paper transition-colors">
+                    <summary class="font-display font-extrabold text-lg flex items-center justify-between gap-4 cursor-pointer list-none">
                         <span>Vocês dão garantia?</span>
-                        <svg class="w-5 h-5 text-blue-600 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
+                        <span class="faq-plus font-display font-extrabold text-2xl text-joy-pink transition-transform">+</span>
                     </summary>
-                    <p class="mt-4 text-gray-600 dark:text-gray-300">Sim! Todos os nossos serviços têm garantia de 90 dias contra defeitos de fabricação das peças utilizadas e mão de obra.</p>
+                    <div class="faq-body mt-4 font-semibold text-joy-muted">Sim! Todos os nossos serviços têm garantia de 90 dias contra defeitos de fabricação das peças utilizadas e mão de obra.</div>
                 </details>
-                
-                <details class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 cursor-pointer group">
-                    <summary class="font-bold text-lg text-gray-900 dark:text-white list-none flex items-center justify-between">
+
+                <details class="group rounded-xl border-2 border-dashed border-joy-line p-6 open:border-joy-outline open:bg-joy-paper transition-colors">
+                    <summary class="font-display font-extrabold text-lg flex items-center justify-between gap-4 cursor-pointer list-none">
                         <span>Como devo embalar meu controle para envio?</span>
-                        <svg class="w-5 h-5 text-blue-600 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
+                        <span class="faq-plus font-display font-extrabold text-2xl text-joy-pink transition-transform">+</span>
                     </summary>
-                    <p class="mt-4 text-gray-600 dark:text-gray-300">Embale o controle com plástico bolha ou papel, coloque em uma caixa resistente e preencha os espaços vazios. Recomendamos declarar o valor e contratar seguro nos Correios.</p>
+                    <div class="faq-body mt-4 font-semibold text-joy-muted">Embale o controle com plástico bolha ou papel, coloque em uma caixa resistente e preencha os espaços vazios. Recomendamos declarar o valor e contratar seguro nos Correios.</div>
                 </details>
-                
-                <details class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 cursor-pointer group">
-                    <summary class="font-bold text-lg text-gray-900 dark:text-white list-none flex items-center justify-between">
+
+                <details class="group rounded-xl border-2 border-dashed border-joy-line p-6 open:border-joy-outline open:bg-joy-paper transition-colors">
+                    <summary class="font-display font-extrabold text-lg flex items-center justify-between gap-4 cursor-pointer list-none">
                         <span>Vocês consertam controles de qualquer marca?</span>
-                        <svg class="w-5 h-5 text-blue-600 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
+                        <span class="faq-plus font-display font-extrabold text-2xl text-joy-pink transition-transform">+</span>
                     </summary>
-                    <p class="mt-4 text-gray-600 dark:text-gray-300">Sim! Trabalhamos com PlayStation, Xbox, Nintendo, controles de PC e outros periféricos de gaming. Entre em contato para confirmar se atendemos seu modelo específico.</p>
+                    <div class="faq-body mt-4 font-semibold text-joy-muted">Sim! Trabalhamos com PlayStation, Xbox, Nintendo, controles de PC e outros periféricos de gaming. Entre em contato para confirmar se atendemos seu modelo específico.</div>
                 </details>
-                
-                <details class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 cursor-pointer group">
-                    <summary class="font-bold text-lg text-gray-900 dark:text-white list-none flex items-center justify-between">
+
+                <details class="group rounded-xl border-2 border-dashed border-joy-line p-6 open:border-joy-outline open:bg-joy-paper transition-colors">
+                    <summary class="font-display font-extrabold text-lg flex items-center justify-between gap-4 cursor-pointer list-none">
                         <span>Preciso pagar antes do conserto?</span>
-                        <svg class="w-5 h-5 text-blue-600 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
+                        <span class="faq-plus font-display font-extrabold text-2xl text-joy-pink transition-transform">+</span>
                     </summary>
-                    <p class="mt-4 text-gray-600 dark:text-gray-300">Não! Fazemos o diagnóstico gratuito e enviamos o orçamento. Você só paga após aprovar o orçamento. Se não aprovar, devolvemos o controle sem custos (exceto frete de retorno).</p>
+                    <div class="faq-body mt-4 font-semibold text-joy-muted">Não! Fazemos o diagnóstico gratuito e enviamos o orçamento. Você só paga após aprovar o orçamento. Se não aprovar, devolvemos o controle sem custos (exceto frete de retorno).</div>
                 </details>
             </div>
         </div>
     </section>
 
-    <!-- Loja (Store) Section -->
-    <section id="loja" class="py-20 bg-gray-100 dark:bg-gray-800">
+    <!-- Loja -->
+    <section id="loja" class="py-20 dotgrid">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center text-gray-900 dark:text-white mb-12">Nossa Loja</h2>
-            <div id="products-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
-                <!-- Products will be rendered dynamically here -->
-                <!-- <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform flex flex-col h-full">
-<div class="relative">
-    <img src="images/IMG_20250606_122658.jpg" alt="DualSense God of War Ragnarök" class="w-full h-56 object-cover bg-white rounded-t-xl mx-auto block" />
-    <div class="absolute top-2 right-2 bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-1 rounded-full">ESPECIAL</div>
-</div>
-<div class="p-4 flex-1">
-    <h3 class="text-lg font-bold text-gray-900 dark:text-white">DualSense God of War Ragnarök</h3>
-    <p class="text-gray-600 dark:text-gray-300 text-sm mt-1">Controle PS5 - Edição Especial</p>
-    <div class="mt-3">
-    <span class="text-2xl font-bold text-gray-900 dark:text-white">R$ 699,90</span>
-    <span class="text-green-600 text-sm ml-2">12x R$ 58,32</span>
-    </div>
-    <p class="text-green-600 font-medium mt-2 flex items-center">
-    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 3.636a1 1 0 010 1.414 7 7 0 000 9.9 1 1 0 11-1.414 1.414 9 9 0 010-12.728 1 1 0 011.414 0zm9.9 0a1 1 0 011.414 0 9 9 0 010 12.728 1 1 0 11-1.414-1.414 7 7 0 000-9.9 1 1 0 010-1.414zM7.879 6.464a1 1 0 010 1.414 3 3 0 000 4.243 1 1 0 11-1.415 1.414 5 5 0 010-7.07 1 1 0 011.415 0zm4.242 0a1 1 0 011.415 0 5 5 0 010 7.072 1 1 0 01-1.415-1.415 3 3 0 000-4.242 1 1 0 010-1.415z" clip-rule="evenodd"/></svg>
-    Frete Grátis
-    </p>
-</div>
-<button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-b-xl transition-colors font-semibold text-base flex items-center justify-center gap-2">
-<svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.031-.967-.273-.099-.471-.148-.67.15-.198.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.447-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.007-.372-.009-.571-.009-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.363.71.306 1.263.489 1.694.626.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.288.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 6.617h-.001a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.455 4.436-9.89 9.892-9.89 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.896 6.994c-.003 5.455-4.438 9.89-9.896 9.89m8.413-18.304A11.815 11.815 0 0012.05.003C5.495.003.002 5.495 0 12.053c0 2.125.557 4.199 1.615 6.032L.057 23.953a1 1 0 001.237 1.237l5.92-1.552a11.915 11.915 0 005.835 1.482h.005c6.555 0 11.848-5.492 11.85-12.048a11.82 11.82 0 00-3.473-8.591"/></svg>
-{{ ... }}
-Comprar Agora
-</button>
-</div> -->
-
+            <div class="mb-12 flex items-end justify-between gap-6 flex-wrap">
+                <div>
+                    <p class="font-mono text-xs font-bold uppercase tracking-widest text-joy-pink mb-3">[ 05 // loja ]</p>
+                    <h2 class="font-display font-extrabold text-4xl sm:text-5xl tracking-tight">Controles prontos para jogar</h2>
+                </div>
+                <p class="font-mono text-xs uppercase tracking-widest text-joy-muted">clique nas fotos para ver mais ângulos</p>
             </div>
+            <div id="products-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-gray-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer class="bg-[#101114] text-gray-300 border-t-[3px] border-joy-outline overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                 <div>
-                    <h3 class="text-white text-lg font-bold mb-4">JoyFix - Isaac Correia Gonçalves</h3>
-                    <p>Taubaté, São Paulo<br>
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="./images/joyfix-logo.jpg" alt="JoyFix Logo" class="h-11 w-auto rounded-lg sticker-sm" />
+                        <span class="font-display text-2xl font-extrabold wordmark lowercase">joyfix</span>
+                    </div>
+                    <p class="font-semibold text-sm leading-relaxed text-gray-400">
+                        JoyFix - Isaac Correia Gonçalves<br>
                         Rua Professor Mario Bordini, 401<br>
-                        Jardim Ana Emília<br>
-                        Contato: (12) 99226-5665</p>
+                        Jardim Ana Emília, Taubaté - SP<br>
+                        <a href="https://wa.me/5512992265665" target="_blank" class="font-mono text-joy-yellow hover:underline">(12) 99226-5665</a>
+                    </p>
                 </div>
                 <div>
-                    <h3 class="text-white text-lg font-bold mb-4">Redes Sociais</h3>
-                    <div class="flex space-x-4">
-                        <span class="hover:text-blue-400">Website</span>
-                        <a href="https://www.instagram.com/joyfix.taubate/" target="_blank"
-                            class="hover:text-blue-400">Instagram</a>
-                        <a href="https://wa.me/5512992265665" target="_blank" class="hover:text-blue-400">WhatsApp</a>
+                    <h3 class="font-mono text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Navegação</h3>
+                    <div class="flex flex-col space-y-2">
+                        <a href="#loja" class="font-display font-bold text-lg hover:text-joy-yellow transition-colors">Loja</a>
+                        <a href="#servicos" class="font-display font-bold text-lg hover:text-joy-yellow transition-colors">Serviços</a>
+                        <a href="#orcamento" class="font-display font-bold text-lg hover:text-joy-yellow transition-colors">Orçamento</a>
+                        <a href="https://wa.me/5512992265665" target="_blank" class="font-display font-bold text-lg hover:text-joy-yellow transition-colors">WhatsApp</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-mono text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Redes sociais</h3>
+                    <div class="flex gap-3">
+                        <a href="https://www.instagram.com/joyfix.taubate/" target="_blank" aria-label="Instagram" title="Instagram"
+                            class="sticker-sm sticker-hover p-2.5 rounded-lg bg-joy-pink text-white">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="https://wa.me/5512992265665" target="_blank" aria-label="WhatsApp" title="WhatsApp"
+                            class="sticker-sm sticker-hover p-2.5 rounded-lg bg-[#25D366] text-[#17181C]">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 6.994 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
-                <p> 2024 JoyFix - Todos os direitos reservados</p>
+            <div class="mt-12 pt-8 border-t-2 border-dashed border-gray-700 flex flex-col md:flex-row items-center justify-between gap-3">
+                <p class="font-mono text-xs text-gray-500">© 2024 JoyFix - Todos os direitos reservados</p>
+                <p class="font-mono text-xs text-gray-500">feito na bancada em Taubaté-SP · atendimento para todo o Brasil</p>
             </div>
         </div>
+        <div class="select-none leading-none text-center pb-4" aria-hidden="true">
+            <span class="outline-text font-display font-extrabold lowercase text-[clamp(64px,15vw,200px)]">joyfix</span>
+        </div>
     </footer>
+
     <script>
-        // Product carousels logic with SLIDE (side) transition, no arrows, only dots
         function initProductCarousels() {
             document.querySelectorAll('.product-carousel').forEach(function (carousel) {
                 const images = JSON.parse(carousel.getAttribute('data-images'));
@@ -640,7 +665,7 @@ Comprar Agora
                     dots.innerHTML = '';
                     images.forEach((_, i) => {
                         const dot = document.createElement('button');
-                        dot.className = 'w-2 h-2 rounded-full ' + (i === current ? 'bg-blue-600' : 'bg-gray-300 dark:bg-gray-600');
+                        dot.className = 'w-2.5 h-2.5 rounded-full border border-black/40 ' + (i === current ? 'bg-joy-pink' : 'bg-white/80');
                         dot.onclick = () => slideTo(i);
                         dots.appendChild(dot);
                     });
@@ -655,13 +680,10 @@ Comprar Agora
                     el.addEventListener('mouseenter', stopAuto);
                     el.addEventListener('mouseleave', startAuto);
                 });
-                // Advance to next slide on click anywhere on the carousel
                 carousel.addEventListener('click', function (e) {
-                    // Prevent dot clicks from double-advancing
                     if (e.target.closest('.carousel-dots')) return;
                     slideTo(current + 1);
                 });
-                // Set initial width for all images in the track
                 Array.from(track.children).forEach(img => {
                     img.style.minWidth = '100%';
                     img.style.maxWidth = '100%';
@@ -671,97 +693,71 @@ Comprar Agora
                 startAuto();
             });
         }
-        
-        // Calculator is now handled by external component (js/orcamento-calculator.js)
-        // This function is kept for backward compatibility but does nothing
-        // The external component auto-initializes
-// Adicione o número do WhatsApp da loja aqui no formato internacional, sem espaços ou traços
-const WHATSAPP_NUMBER = '5512992265665';
-const WHATSAPP_MESSAGE_TEMPLATE = 'Olá! Gostaria de saber se este produto está disponível. Poderia me informar, por favor?\nProduto: ';
-const WHATSAPP_IMAGE_LABEL = 'Imagem: ';
 
-// Smooth scroll to element with offset for fixed header
-function smoothScrollToElement(elementId) {
-  const element = document.getElementById(elementId);
-  if (element) {
-    const headerOffset = 80; // Height of fixed header
-    const elementPosition = element.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        const WHATSAPP_NUMBER = '5512992265665';
+        const WHATSAPP_MESSAGE_TEMPLATE = 'Olá! Gostaria de saber se este produto está disponível. Poderia me informar, por favor?\nProduto: ';
+        const WHATSAPP_IMAGE_LABEL = 'Imagem: ';
 
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: 'smooth'
-    });
-  }
-}
-
-// Check URL for hash and scroll to section
-function handleHashScroll() {
-  if (window.location.hash) {
-    const hash = window.location.hash.substring(1); // Remove the '#'
-    if (hash === 'orçamento' || hash === 'orcamento') {
-      // Small timeout to ensure DOM is fully loaded
-      setTimeout(() => {
-        smoothScrollToElement('orcamento');
-      }, 100);
-    }
-  }
-}
-
-// Initialize everything when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-  // Initialize product carousels
-  if (typeof initProductCarousels === 'function') {
-    initProductCarousels();
-  }
-  
-  // Initialize budget calculator
-  if (typeof initOrcamentoCalculator === 'function') {
-    initOrcamentoCalculator();
-  }
-  
-  // Handle initial hash in URL
-  handleHashScroll();
-  
-  // Handle hash changes (when clicking on anchor links after page load)
-  window.addEventListener('hashchange', handleHashScroll, false);
-  
-  // Use event delegation for dynamically rendered buy buttons
-  document.addEventListener('click', function(e) {
-    // Check if clicked element or its parent is a buy button
-    const btn = e.target.closest('.whatsapp-buy-btn');
-    if (!btn) return;
-    
-    e.preventDefault();
-    // Tenta encontrar o nome do produto no mesmo card
-    let card = btn.closest('.product-card');
-    let productName = 'Produto';
-    let imgUrl = '';
-    if (card) {
-      let h3 = card.querySelector('h3');
-      if (h3) productName = h3.textContent.trim();
-      // Tenta pegar a primeira imagem do carousel
-      let img = card.querySelector('.carousel-track img, .product-carousel img, img');
-      if (img) {
-        imgUrl = img.src;
-        // Se o src for relativo, torna absoluto
-        if (imgUrl && !/^https?:\/\//i.test(imgUrl)) {
-          imgUrl = window.location.origin + (imgUrl.startsWith('/') ? imgUrl : '/' + imgUrl);
+        function smoothScrollToElement(elementId) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                const headerOffset = 80;
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+            }
         }
-      }
-    }
-    let msg = WHATSAPP_MESSAGE_TEMPLATE + productName;
-    if (imgUrl) {
-      msg += WHATSAPP_IMAGE_LABEL + imgUrl;
-    }
-    msg = encodeURIComponent(msg);
-    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
-    window.open(waUrl, '_blank');
-  });
-});
-</script>
-<script src="js/orcamento-calculator.js"></script>
-<script src="render-products.js"></script>
+
+        function handleHashScroll() {
+            if (window.location.hash) {
+                const hash = window.location.hash.substring(1);
+                if (hash === 'orçamento' || hash === 'orcamento') {
+                    setTimeout(() => { smoothScrollToElement('orcamento'); }, 100);
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof initProductCarousels === 'function') {
+                initProductCarousels();
+            }
+            if (typeof initOrcamentoCalculator === 'function') {
+                initOrcamentoCalculator();
+            }
+            handleHashScroll();
+            window.addEventListener('hashchange', handleHashScroll, false);
+
+            document.addEventListener('click', function(e) {
+                const btn = e.target.closest('.whatsapp-buy-btn');
+                if (!btn) return;
+
+                e.preventDefault();
+                let card = btn.closest('.product-card');
+                let productName = 'Produto';
+                let imgUrl = '';
+                if (card) {
+                    let h3 = card.querySelector('h3');
+                    if (h3) productName = h3.textContent.trim();
+                    let img = card.querySelector('.carousel-track img, .product-carousel img, img');
+                    if (img) {
+                        imgUrl = img.src;
+                        if (imgUrl && !/^https?:\/\//i.test(imgUrl)) {
+                            imgUrl = window.location.origin + (imgUrl.startsWith('/') ? imgUrl : '/' + imgUrl);
+                        }
+                    }
+                }
+                let msg = WHATSAPP_MESSAGE_TEMPLATE + productName;
+                if (imgUrl) {
+                    msg += WHATSAPP_IMAGE_LABEL + imgUrl;
+                }
+                msg = encodeURIComponent(msg);
+                const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+                window.open(waUrl, '_blank');
+            });
+        });
+    </script>
+    <script src="js/orcamento-calculator.js"></script>
+    <script src="render-products.js"></script>
 </body>
 
 </html>

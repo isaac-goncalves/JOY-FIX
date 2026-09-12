@@ -1,5 +1,5 @@
 /**
- * JoyFix - Orçamento Calculator Component
+ * JoyFix - Orï¿½amento Calculator Component
  * Componentized calculator with fixed logic and improved UI
  * @version 2.0
  */
@@ -168,9 +168,8 @@
 
   // Update labor display
   function updateLaborDisplay() {
-    const laborElement = $('.text-gray-700.dark\\:text-gray-300.font-semibold');
-    const laborPriceElement = laborElement ? laborElement.parentElement.querySelector('.font-bold.text-xl') : null;
-    
+    const laborPriceElement = $('#labor-price');
+
     if (laborPriceElement) {
       const currentLabor = getCurrentLaborCost();
       laborPriceElement.textContent = formatBRL(currentLabor);
@@ -207,7 +206,7 @@
 
   // WhatsApp message builder
   function buildWhatsAppMessage() {
-    const lines = ['*Orçamento para Conserto de Controle*', ''];
+    const lines = ['*Orï¿½amento para Conserto de Controle*', ''];
 
     // Controllers
     const selectedControllers = $$('select[name="modelo[]"]')
@@ -239,19 +238,19 @@
     });
 
     if (selectedParts.length > 0) {
-      lines.push('*Peças Selecionadas:*');
+      lines.push('*Peï¿½as Selecionadas:*');
       lines.push(...selectedParts);
       lines.push('');
     }
 
-    lines.push(`*Mão de Obra:* ${formatBRL(STATE.baseLabor)}`);
+    lines.push(`*Mï¿½o de Obra:* ${formatBRL(STATE.baseLabor)}`);
     lines.push('');
     lines.push(`*Total: ${formatBRL(STATE.total)}*`);
     lines.push('');
-    lines.push('*Informações Adicionais:*');
-    lines.push('? Orçamento válido por 7 dias');
-    lines.push('? Pagamento à vista no ato da entrega');
-    lines.push('? Garantia de 90 dias para peças e mão de obra');
+    lines.push('*Informaï¿½ï¿½es Adicionais:*');
+    lines.push('? Orï¿½amento vï¿½lido por 7 dias');
+    lines.push('? Pagamento ï¿½ vista no ato da entrega');
+    lines.push('? Garantia de 90 dias para peï¿½as e mï¿½o de obra');
 
     return lines.join('\n');
   }
@@ -301,7 +300,7 @@
   // Update battery option visibility based on controller selection
   function updateBatteryOption() {
     const batteryCheckbox = $('#bateria');
-    const batteryContainer = batteryCheckbox ? batteryCheckbox.closest('.flex.items-center.justify-between') : null;
+    const batteryContainer = batteryCheckbox ? batteryCheckbox.closest('.part-row') : null;
     
     if (!batteryContainer) return;
 
@@ -460,8 +459,7 @@
         50% { transform: scale(1.05); }
       }
       select.selected {
-        border-color: #3b82f6;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        border-color: var(--c-pink, #FF2E97);
       }
     `;
     document.head.appendChild(style);
